@@ -3,13 +3,15 @@ import os
 os.environ["PLAYWRIGHT_BROWSERS_PATH"] = "/pw-browsers"
 
 from fastapi import FastAPI, APIRouter, WebSocket, WebSocketDisconnect, BackgroundTasks
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, FileResponse
+from fastapi.staticfiles import StaticFiles
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
 import logging
 import json
 import asyncio
+import base64
 from pathlib import Path
 from pydantic import BaseModel, Field, ConfigDict
 from typing import List, Optional, Dict, Any
@@ -18,6 +20,8 @@ from datetime import datetime, timezone
 from enum import Enum
 
 ROOT_DIR = Path(__file__).parent
+SCREENSHOTS_DIR = ROOT_DIR / 'screenshots'
+SCREENSHOTS_DIR.mkdir(exist_ok=True)
 load_dotenv(ROOT_DIR / '.env')
 
 # MongoDB connection
@@ -234,10 +238,20 @@ async def run_test_exploration(session_id: str, config: TestConfig):
                     
                     # Check for HTTP errors
                     if response and response.status >= 400:
+                        # Take screenshot on HTTP error
+                        screenshot_id = str(uuid.uuid4())
+                        screenshot_path = SCREENSHOTS_DIR / f"{screenshot_id}.png"
+                        try:
+                            await page.screenshot(path=str(screenshot_path), full_page=False)
+                            screenshot_url = f"/api/screenshots/{screenshot_id}.png"
+                        except:
+                            screenshot_url = None
+                        
                         bug = Bug(
                             type="http_error",
                             message=f"HTTP {response.status}: {response.status_text}",
                             url=current_url,
+                            screenshot=screenshot_url,
                             severity=BugSeverity.HIGH if response.status >= 500 else BugSeverity.MEDIUM
                         )
                         session.bugs.append(bug)
@@ -264,10 +278,20 @@ async def run_test_exploration(session_id: str, config: TestConfig):
                     
                     # Check for JS errors that occurred
                     for error in errors_found:
+                        # Take screenshot on JS error
+                        screenshot_id = str(uuid.uuid4())
+                        screenshot_path = SCREENSHOTS_DIR / f"{screenshot_id}.png"
+                        try:
+                            await page.screenshot(path=str(screenshot_path), full_page=False)
+                            screenshot_url = f"/api/screenshots/{screenshot_id}.png"
+                        except:
+                            screenshot_url = None
+                        
                         bug = Bug(
                             type=error["type"],
                             message=error["message"],
                             url=error["url"],
+                            screenshot=screenshot_url,
                             severity=BugSeverity.HIGH
                         )
                         session.bugs.append(bug)
@@ -697,6 +721,14 @@ async def get_all_bugs():
     for session in sessions:
         all_bugs.extend(session.get("bugs", []))
     return all_bugs
+
+# Screenshot endpoint
+@api_router.get("/screenshots/{filename}")
+async def get_screenshot(filename: str):
+    screenshot_path = SCREENSHOTS_DIR / filename
+    if not screenshot_path.exists():
+        return JSONResponse(status_code=404, content={"error": "Screenshot not found"})
+    return FileResponse(screenshot_path, media_type="image/png")
 
 # WebSocket endpoint
 @api_router.websocket("/ws")

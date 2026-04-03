@@ -453,6 +453,15 @@ function App() {
                                             </div>
                                             <div className="bug-message">{bug.message}</div>
                                             <div className="bug-url">{bug.url}</div>
+                                            {bug.screenshot && (
+                                                <div className="mt-2 border border-zinc-300">
+                                                    <img 
+                                                        src={`${BACKEND_URL}${bug.screenshot}`}
+                                                        alt={`Screenshot bug ${bug.type}`}
+                                                        className="w-full max-h-[200px] object-contain bg-zinc-100"
+                                                    />
+                                                </div>
+                                            )}
                                         </div>
                                     ))}
                                 </div>
@@ -502,6 +511,19 @@ function App() {
                                         {bug.selector && (
                                             <div className="mt-2 p-2 bg-zinc-100 font-mono text-xs overflow-x-auto">
                                                 {bug.selector}
+                                            </div>
+                                        )}
+                                        {bug.screenshot && (
+                                            <div className="mt-3 border border-zinc-300">
+                                                <div className="bg-zinc-900 text-white text-xs px-3 py-2 font-mono uppercase tracking-wider">
+                                                    Screenshot du Bug
+                                                </div>
+                                                <img 
+                                                    src={`${BACKEND_URL}${bug.screenshot}`}
+                                                    alt={`Screenshot bug ${bug.type}`}
+                                                    className="w-full max-h-[400px] object-contain bg-zinc-100"
+                                                    data-testid={`bug-screenshot-${i}`}
+                                                />
                                             </div>
                                         )}
                                         <div className="text-xs text-zinc-400 mt-2 font-mono">
