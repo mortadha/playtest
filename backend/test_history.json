@@ -135,7 +135,473 @@
           "timestamp": "2026-04-03T22:47:19.326733+00:00"
         }
       ]
+    },
+    {
+      "id": "d70de029-1226-4a63-9e3f-4f14a8a2967f",
+      "target_url": "https://www.admissions.fr/",
+      "status": "completed",
+      "started_at": "2026-04-03T22:48:27.895081+00:00",
+      "ended_at": "2026-04-03T22:51:32.531730+00:00",
+      "urls_scanned": 1,
+      "elements_found": 11,
+      "forms_found": 1,
+      "bugs_found": 41,
+      "bugs": [
+        {
+          "id": "89958ab7-d0d1-4a8a-a3ac-beb6946497c4",
+          "type": "console_error",
+          "message": "Failed to load resource: the server responded with a status of 403 (Forbidden)",
+          "url": "https://www.admissions.fr/",
+          "selector": null,
+          "screenshot": "/api/screenshots/5c184177-4955-436b-8f19-534a3c185ea7.png",
+          "severity": "high",
+          "timestamp": "2026-04-03T22:48:32.448535+00:00"
+        },
+        {
+          "id": "7b593853-fe6f-4a76-9143-1eeb4ca125a4",
+          "type": "form_submit_error",
+          "message": "Form submission failed: ElementHandle.click: Target page, context or browser has been closed\nCall log:\n  - attempting click action\n    2 \u00d7 waiting for element to be visible, enabled and stable\n      - element is not visible\n    - retrying click action\n    - waiting 20ms\n    2 \u00d7 waiting for element to be visible, enabled and stable\n      - element is not visible\n    - retrying click action\n      - waiting 100ms\n    41 \u00d7 waiting for element to be visible, enabled and stable\n       - element is not visible\n     - retrying click action\n       - waiting 500ms\n",
+          "url": "https://www.admissions.fr/",
+          "selector": "<form id=\"lb-contact-form\" method=\"get\" onsubmit=\"return false;\" data-hs-cf-bound=\"true\">\n          ",
+          "screenshot": null,
+          "severity": "medium",
+          "timestamp": "2026-04-03T22:51:32.189775+00:00"
+        },
+        {
+          "id": "c9993335-05de-4c71-bfac-dfdf8d4e6e6b",
+          "type": "navigation_error",
+          "message": "Failed to navigate: Page.goto: Target page, context or browser has been closed",
+          "url": "https://www.admissions.fr/portage-salarial/",
+          "selector": null,
+          "screenshot": null,
+          "severity": "medium",
+          "timestamp": "2026-04-03T22:51:32.219641+00:00"
+        },
+        {
+          "id": "a05fb22e-d9a3-42a7-b041-808abf03964c",
+          "type": "navigation_error",
+          "message": "Failed to navigate: Page.goto: Target page, context or browser has been closed",
+          "url": "https://www.admissions.fr/simulation-portage-salarial/",
+          "selector": null,
+          "screenshot": null,
+          "severity": "medium",
+          "timestamp": "2026-04-03T22:51:32.222628+00:00"
+        },
+        {
+          "id": "1ec106b6-1ad4-410e-bb3a-fefbfe658523",
+          "type": "navigation_error",
+          "message": "Failed to navigate: Page.goto: Target page, context or browser has been closed",
+          "url": "https://www.admissions.fr/offre-portage-salarial/",
+          "selector": null,
+          "screenshot": null,
+          "severity": "medium",
+          "timestamp": "2026-04-03T22:51:32.225093+00:00"
+        },
+        {
+          "id": "af3089bb-7191-44ea-818d-63e52e333832",
+          "type": "navigation_error",
+          "message": "Failed to navigate: Page.goto: Target page, context or browser has been closed",
+          "url": "https://www.admissions.fr/portage-salarial-international/",
+          "selector": null,
+          "screenshot": null,
+          "severity": "medium",
+          "timestamp": "2026-04-03T22:51:32.227370+00:00"
+        },
+        {
+          "id": "693a3b07-4823-45b1-b602-6b2c582fc5f4",
+          "type": "navigation_error",
+          "message": "Failed to navigate: Page.goto: Target page, context or browser has been closed",
+          "url": "https://www.admissions.fr/blog/",
+          "selector": null,
+          "screenshot": null,
+          "severity": "medium",
+          "timestamp": "2026-04-03T22:51:32.277906+00:00"
+        },
+        {
+          "id": "1e3630bc-0721-4682-b8de-60cefaac8951",
+          "type": "navigation_error",
+          "message": "Failed to navigate: Page.goto: Target page, context or browser has been closed",
+          "url": "https://www.admissions.fr/webinar/",
+          "selector": null,
+          "screenshot": null,
+          "severity": "medium",
+          "timestamp": "2026-04-03T22:51:32.280591+00:00"
+        },
+        {
+          "id": "d2a24470-ed0a-479a-a31b-57f5dabc1a42",
+          "type": "navigation_error",
+          "message": "Failed to navigate: Page.goto: Target page, context or browser has been closed",
+          "url": "https://www.admissions.fr/politique-rse/",
+          "selector": null,
+          "screenshot": null,
+          "severity": "medium",
+          "timestamp": "2026-04-03T22:51:32.282619+00:00"
+        },
+        {
+          "id": "8bb24d07-f37c-4d1a-9713-cb187993b226",
+          "type": "navigation_error",
+          "message": "Failed to navigate: Page.goto: Target page, context or browser has been closed",
+          "url": "https://www.admissions.fr/nous-contacter/",
+          "selector": null,
+          "screenshot": null,
+          "severity": "medium",
+          "timestamp": "2026-04-03T22:51:32.284888+00:00"
+        },
+        {
+          "id": "af4b3748-585a-409e-a728-8c9d7ac162e1",
+          "type": "navigation_error",
+          "message": "Failed to navigate: Page.goto: Target page, context or browser has been closed",
+          "url": "https://www.admissions.fr/portage-salarial-region/",
+          "selector": null,
+          "screenshot": null,
+          "severity": "medium",
+          "timestamp": "2026-04-03T22:51:32.287525+00:00"
+        },
+        {
+          "id": "eaf3dc14-7e62-4e8d-9dbc-018e17b1553a",
+          "type": "navigation_error",
+          "message": "Failed to navigate: Page.goto: Target page, context or browser has been closed",
+          "url": "https://www.admissions.fr/agences/portage-salarial-lille/",
+          "selector": null,
+          "screenshot": null,
+          "severity": "medium",
+          "timestamp": "2026-04-03T22:51:32.320461+00:00"
+        },
+        {
+          "id": "f127dfd4-0b97-4afb-8026-0409ff0d1833",
+          "type": "navigation_error",
+          "message": "Failed to navigate: Page.goto: Target page, context or browser has been closed",
+          "url": "https://www.admissions.fr/agences/portage-salarial-rouen/",
+          "selector": null,
+          "screenshot": null,
+          "severity": "medium",
+          "timestamp": "2026-04-03T22:51:32.323462+00:00"
+        },
+        {
+          "id": "20f80184-2c38-49e4-a83c-05af1a3e52f8",
+          "type": "navigation_error",
+          "message": "Failed to navigate: Page.goto: Target page, context or browser has been closed",
+          "url": "https://www.admissions.fr/agences/portage-salarial-caen/",
+          "selector": null,
+          "screenshot": null,
+          "severity": "medium",
+          "timestamp": "2026-04-03T22:51:32.325727+00:00"
+        },
+        {
+          "id": "d0a08cc7-c9c6-44ce-b58a-ef1f5ea87760",
+          "type": "navigation_error",
+          "message": "Failed to navigate: Page.goto: Target page, context or browser has been closed",
+          "url": "https://www.admissions.fr/agences/portage-salarial-paris/",
+          "selector": null,
+          "screenshot": null,
+          "severity": "medium",
+          "timestamp": "2026-04-03T22:51:32.327837+00:00"
+        },
+        {
+          "id": "1baaecfb-4305-4b1c-b37d-57e7dd926040",
+          "type": "navigation_error",
+          "message": "Failed to navigate: Page.goto: Target page, context or browser has been closed",
+          "url": "https://www.admissions.fr/agences/portage-salarial-strasbourg/",
+          "selector": null,
+          "screenshot": null,
+          "severity": "medium",
+          "timestamp": "2026-04-03T22:51:32.393439+00:00"
+        },
+        {
+          "id": "cd3982fb-85a2-49fb-8c16-0cdf186e6a37",
+          "type": "navigation_error",
+          "message": "Failed to navigate: Page.goto: Target page, context or browser has been closed",
+          "url": "https://www.admissions.fr/agences/portage-salarial-nantes/",
+          "selector": null,
+          "screenshot": null,
+          "severity": "medium",
+          "timestamp": "2026-04-03T22:51:32.396049+00:00"
+        },
+        {
+          "id": "0d73f15c-0592-447c-b6de-b64573eeaf61",
+          "type": "navigation_error",
+          "message": "Failed to navigate: Page.goto: Target page, context or browser has been closed",
+          "url": "https://www.admissions.fr/agences/portage-salarial-roche-sur-yon/",
+          "selector": null,
+          "screenshot": null,
+          "severity": "medium",
+          "timestamp": "2026-04-03T22:51:32.418621+00:00"
+        },
+        {
+          "id": "3c6a76a4-c2d8-44d8-8d73-3abea1334c9d",
+          "type": "navigation_error",
+          "message": "Failed to navigate: Page.goto: Target page, context or browser has been closed",
+          "url": "https://www.admissions.fr/agences/portage-salarial-bordeaux/",
+          "selector": null,
+          "screenshot": null,
+          "severity": "medium",
+          "timestamp": "2026-04-03T22:51:32.421126+00:00"
+        },
+        {
+          "id": "de37c8d4-d863-4009-a9e6-b54fc075aaa2",
+          "type": "navigation_error",
+          "message": "Failed to navigate: Page.goto: Target page, context or browser has been closed",
+          "url": "https://www.admissions.fr/agences/portage-salarial-toulouse/",
+          "selector": null,
+          "screenshot": null,
+          "severity": "medium",
+          "timestamp": "2026-04-03T22:51:32.422907+00:00"
+        },
+        {
+          "id": "b7084829-f3e5-4f4a-a8a1-3858f5ab5eea",
+          "type": "navigation_error",
+          "message": "Failed to navigate: Page.goto: Target page, context or browser has been closed",
+          "url": "https://www.admissions.fr/agences/portage-salarial-marseille/",
+          "selector": null,
+          "screenshot": null,
+          "severity": "medium",
+          "timestamp": "2026-04-03T22:51:32.424841+00:00"
+        },
+        {
+          "id": "86ee9252-a503-4157-ae83-037390f2dab7",
+          "type": "navigation_error",
+          "message": "Failed to navigate: Page.goto: Target page, context or browser has been closed",
+          "url": "https://www.admissions.fr/agences/portage-salarial-grenoble/",
+          "selector": null,
+          "screenshot": null,
+          "severity": "medium",
+          "timestamp": "2026-04-03T22:51:32.426698+00:00"
+        },
+        {
+          "id": "f10a05b5-1fe5-49d0-8edc-be067dba5ea5",
+          "type": "navigation_error",
+          "message": "Failed to navigate: Page.goto: Target page, context or browser has been closed",
+          "url": "https://www.admissions.fr/agences/portage-salarial-annecy/",
+          "selector": null,
+          "screenshot": null,
+          "severity": "medium",
+          "timestamp": "2026-04-03T22:51:32.428643+00:00"
+        },
+        {
+          "id": "aadcdec0-6a75-4612-9f0e-a91238496803",
+          "type": "navigation_error",
+          "message": "Failed to navigate: Page.goto: Target page, context or browser has been closed",
+          "url": "https://www.admissions.fr/agences/portage-salarial-geneve/",
+          "selector": null,
+          "screenshot": null,
+          "severity": "medium",
+          "timestamp": "2026-04-03T22:51:32.430500+00:00"
+        },
+        {
+          "id": "0abdcae9-5cd1-4665-9be9-19cca11870ca",
+          "type": "navigation_error",
+          "message": "Failed to navigate: Page.goto: Target page, context or browser has been closed",
+          "url": "https://www.admissions.fr/agences/portage-salarial-lyon/",
+          "selector": null,
+          "screenshot": null,
+          "severity": "medium",
+          "timestamp": "2026-04-03T22:51:32.432327+00:00"
+        },
+        {
+          "id": "08c57549-986f-4870-ad5b-50847ae03d03",
+          "type": "navigation_error",
+          "message": "Failed to navigate: Page.goto: Target page, context or browser has been closed",
+          "url": "https://www.admissions.fr/agences/portage-salarial-rennes/",
+          "selector": null,
+          "screenshot": null,
+          "severity": "medium",
+          "timestamp": "2026-04-03T22:51:32.434156+00:00"
+        },
+        {
+          "id": "583ae631-2d62-4e1b-babe-93234b877819",
+          "type": "navigation_error",
+          "message": "Failed to navigate: Page.goto: Target page, context or browser has been closed",
+          "url": "https://www.admissions.fr/agences/portage-salarial-saint-nazaire/",
+          "selector": null,
+          "screenshot": null,
+          "severity": "medium",
+          "timestamp": "2026-04-03T22:51:32.436116+00:00"
+        },
+        {
+          "id": "4397f976-8d8f-4313-be10-c94658563351",
+          "type": "navigation_error",
+          "message": "Failed to navigate: Page.goto: Target page, context or browser has been closed",
+          "url": "https://www.admissions.fr/agences/portage-salarial-nice/",
+          "selector": null,
+          "screenshot": null,
+          "severity": "medium",
+          "timestamp": "2026-04-03T22:51:32.437963+00:00"
+        },
+        {
+          "id": "5bd4c686-8524-425d-9a11-902f7715ba56",
+          "type": "navigation_error",
+          "message": "Failed to navigate: Page.goto: Target page, context or browser has been closed",
+          "url": "https://www.admissions.fr/agences/portage-salarial-mulhouse/",
+          "selector": null,
+          "screenshot": null,
+          "severity": "medium",
+          "timestamp": "2026-04-03T22:51:32.439806+00:00"
+        },
+        {
+          "id": "a7d8c6d3-974c-4313-81b7-2ea873db1c30",
+          "type": "navigation_error",
+          "message": "Failed to navigate: Page.goto: Target page, context or browser has been closed",
+          "url": "https://www.admissions.fr/agences/portage-salarial-clermont-ferrand/",
+          "selector": null,
+          "screenshot": null,
+          "severity": "medium",
+          "timestamp": "2026-04-03T22:51:32.476580+00:00"
+        },
+        {
+          "id": "420c341c-cf4d-41dd-bab0-4ae33faf6eb2",
+          "type": "navigation_error",
+          "message": "Failed to navigate: Page.goto: Target page, context or browser has been closed",
+          "url": "https://www.admissions.fr/entreprise-nous-contacter/",
+          "selector": null,
+          "screenshot": null,
+          "severity": "medium",
+          "timestamp": "2026-04-03T22:51:32.479703+00:00"
+        },
+        {
+          "id": "91214013-5a69-4234-8e31-3ff28d62bb39",
+          "type": "navigation_error",
+          "message": "Failed to navigate: Page.goto: Target page, context or browser has been closed",
+          "url": "https://www.admissions.fr/services/",
+          "selector": null,
+          "screenshot": null,
+          "severity": "medium",
+          "timestamp": "2026-04-03T22:51:32.481909+00:00"
+        },
+        {
+          "id": "24828f69-2577-4421-8acf-87e799ce38d0",
+          "type": "navigation_error",
+          "message": "Failed to navigate: Page.goto: Target page, context or browser has been closed",
+          "url": "https://www.admissions.fr/expertheque/",
+          "selector": null,
+          "screenshot": null,
+          "severity": "medium",
+          "timestamp": "2026-04-03T22:51:32.483954+00:00"
+        },
+        {
+          "id": "01287cf5-0c10-4c3d-970e-207fa45d5fb2",
+          "type": "navigation_error",
+          "message": "Failed to navigate: Page.goto: Target page, context or browser has been closed",
+          "url": "https://www.admissions.fr/temoignages/",
+          "selector": null,
+          "screenshot": null,
+          "severity": "medium",
+          "timestamp": "2026-04-03T22:51:32.485933+00:00"
+        },
+        {
+          "id": "e205c281-3f06-4813-a8e4-fde3185b1b1b",
+          "type": "navigation_error",
+          "message": "Failed to navigate: Page.goto: Target page, context or browser has been closed",
+          "url": "https://www.admissions.fr/entreprendre/",
+          "selector": null,
+          "screenshot": null,
+          "severity": "medium",
+          "timestamp": "2026-04-03T22:51:32.488016+00:00"
+        },
+        {
+          "id": "95f2abe4-be9d-43ec-9763-ec901f081bff",
+          "type": "navigation_error",
+          "message": "Failed to navigate: Page.goto: Target page, context or browser has been closed",
+          "url": "https://www.admissions.fr/qui-sommes-nous/",
+          "selector": null,
+          "screenshot": null,
+          "severity": "medium",
+          "timestamp": "2026-04-03T22:51:32.490003+00:00"
+        },
+        {
+          "id": "4beaf898-2e88-474c-ae9d-ee7ac3d0adf2",
+          "type": "navigation_error",
+          "message": "Failed to navigate: Page.goto: Target page, context or browser has been closed",
+          "url": "https://www.admissions.fr/en/",
+          "selector": null,
+          "screenshot": null,
+          "severity": "medium",
+          "timestamp": "2026-04-03T22:51:32.492022+00:00"
+        },
+        {
+          "id": "ade8f33d-1dab-4741-8ad8-2e1bc5cfc595",
+          "type": "navigation_error",
+          "message": "Failed to navigate: Page.goto: Target page, context or browser has been closed",
+          "url": "https://www.admissions.fr/mentions-legales/",
+          "selector": null,
+          "screenshot": null,
+          "severity": "medium",
+          "timestamp": "2026-04-03T22:51:32.493860+00:00"
+        },
+        {
+          "id": "9f265442-993b-4bd1-b675-9fe0c6c301cb",
+          "type": "navigation_error",
+          "message": "Failed to navigate: Page.goto: Target page, context or browser has been closed",
+          "url": "https://www.admissions.fr/politique-de-confidentialite/",
+          "selector": null,
+          "screenshot": null,
+          "severity": "medium",
+          "timestamp": "2026-04-03T22:51:32.495839+00:00"
+        },
+        {
+          "id": "73e7fc4f-b23f-4e3f-b066-1676d16a29d6",
+          "type": "navigation_error",
+          "message": "Failed to navigate: Page.goto: Target page, context or browser has been closed",
+          "url": "https://www.admissions.fr/conformite-rgpd/",
+          "selector": null,
+          "screenshot": null,
+          "severity": "medium",
+          "timestamp": "2026-04-03T22:51:32.497650+00:00"
+        },
+        {
+          "id": "f370b18c-f162-43f9-a484-fa58f84abd7c",
+          "type": "navigation_error",
+          "message": "Failed to navigate: Page.goto: Target page, context or browser has been closed",
+          "url": "https://www.admissions.fr/documentation-sur-laccessibilite/",
+          "selector": null,
+          "screenshot": null,
+          "severity": "medium",
+          "timestamp": "2026-04-03T22:51:32.518646+00:00"
+        }
+      ]
+    },
+    {
+      "id": "42ff36a5-4668-418d-88e1-600afb4e8c50",
+      "target_url": "https://www.admissions.fr/",
+      "status": "stopped",
+      "started_at": "2026-04-03T22:51:50.552895+00:00",
+      "ended_at": "2026-04-03T22:54:29.077477+00:00",
+      "urls_scanned": 1,
+      "elements_found": 1,
+      "forms_found": 1,
+      "bugs_found": 1,
+      "bugs": [
+        {
+          "id": "1efed8fd-230a-4698-9c4e-6b77b62d5052",
+          "type": "form_submit_error",
+          "message": "Form submission failed: ElementHandle.click: Timeout 30000ms exceeded.\nCall log:\n  - attempting click action\n    2 \u00d7 waiting for element to be visible, enabled and stable\n      - element is not visible\n    - retrying click action\n    - waiting 20ms\n    2 \u00d7 waiting for element to be visible, enabled and stable\n      - element is not visible\n    - retrying click action\n      - waiting 100ms\n    56 \u00d7 waiting for element to be visible, enabled and stable\n       - element is not visible\n     - retrying click action\n       - waiting 500ms\n",
+          "url": "https://www.admissions.fr/",
+          "selector": "<form id=\"lb-contact-form\" method=\"get\" onsubmit=\"return false;\" data-hs-cf-bound=\"true\">\n          ",
+          "screenshot": null,
+          "severity": "medium",
+          "timestamp": "2026-04-03T22:54:28.977176+00:00"
+        }
+      ]
+    },
+    {
+      "id": "6bde5308-b725-40ba-bcd7-a0620b46dc40",
+      "target_url": "https://httpbin.org/forms/post",
+      "status": "completed",
+      "started_at": "2026-04-03T22:54:41.523625+00:00",
+      "ended_at": "2026-04-03T22:54:46.990107+00:00",
+      "urls_scanned": 1,
+      "elements_found": 1,
+      "forms_found": 0,
+      "bugs_found": 0,
+      "bugs": []
     }
   ],
-  "tested_elements": {}
+  "tested_elements": {
+    "https://www.admissions.fr/::<button class=\"breakdance-menu-link-arrow\" type=\"button\" aria-expanded=\"false\" aria-label=\"Ressource": "2026-04-03T22:48:34.427754+00:00",
+    "https://www.admissions.fr/::<button class=\"pp-btn\" aria-label=\"Lecture/Pause\" type=\"button\" data-tooltip=\"Lecture / Pause\">\n    ": "2026-04-03T22:48:35.498839+00:00",
+    "https://www.admissions.fr/::<button class=\"mute-btn\" aria-label=\"Activer/D\u00e9sactiver le son\" type=\"button\" data-tooltip=\"Couper l": "2026-04-03T22:48:36.563856+00:00",
+    "https://www.admissions.fr/::<button type=\"button\" class=\"button-atom button-atom--primary bde-button__button\">\n    \n        <spa": "2026-04-03T22:48:39.166254+00:00",
+    "https://www.admissions.fr/::<button class=\"close-btn\" type=\"button\">\n            <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"": "2026-04-03T22:49:10.313184+00:00",
+    "https://www.admissions.fr/::<button type=\"button\" class=\"button-atom button-atom--secondary bde-button__button\">\n    \n        <s": "2026-04-03T22:51:58.884295+00:00",
+    "https://httpbin.org/forms/post::<button>Submit order</button>": "2026-04-03T22:54:46.938974+00:00"
+  }
 }

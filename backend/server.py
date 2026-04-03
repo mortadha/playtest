@@ -188,13 +188,28 @@ async def run_test_exploration(session_id: str, config: TestConfig):
             # Error listener
             errors_found = []
             
+            # List of ignorable console errors (common false positives)
+            IGNORABLE_ERRORS = [
+                "403", "401", "Forbidden", "Unauthorized",
+                "favicon", "analytics", "tracking", "gtag", "gtm",
+                "facebook", "twitter", "linkedin", "pixel",
+                "font-size:0", "xr-spatial-tracking", "permissions policy",
+                "script-src", "default-src", "Content Security Policy"
+            ]
+            
+            def should_ignore_error(message):
+                msg_lower = message.lower()
+                return any(ignore.lower() in msg_lower for ignore in IGNORABLE_ERRORS)
+            
             def handle_console(msg):
                 if msg.type == "error":
-                    errors_found.append({
-                        "type": "console_error",
-                        "message": msg.text,
-                        "url": page.url
-                    })
+                    # Skip ignorable errors
+                    if not should_ignore_error(msg.text):
+                        errors_found.append({
+                            "type": "console_error",
+                            "message": msg.text,
+                            "url": page.url
+                        })
             
             page.on("console", handle_console)
             
