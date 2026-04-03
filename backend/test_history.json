@@ -652,6 +652,18 @@
       "forms_found": 0,
       "bugs_found": 0,
       "bugs": []
+    },
+    {
+      "id": "9daef9e2-38a7-42bd-9b8f-bb8307f97c28",
+      "target_url": "https://www.cabinetclgi.com/",
+      "status": "stopped",
+      "started_at": "2026-04-03T23:14:43.116586+00:00",
+      "ended_at": "2026-04-03T23:15:16.887858+00:00",
+      "urls_scanned": 4,
+      "elements_found": 5,
+      "forms_found": 4,
+      "bugs_found": 0,
+      "bugs": []
     }
   ],
   "tested_elements": {
@@ -672,6 +684,7 @@
     "https://www.cabinetclgi.com/espace-client::<button data-hook=\"consent-banner-settings-button\" class=\"Wm1W5U bqbmwD Pg7AcP KiIMJv Mm8Lm6\">Param\u00e8": "2026-04-03T22:56:44.410261+00:00",
     "https://www.cabinetclgi.com/devis::<button aria-disabled=\"false\" aria-label=\"Envoyer\" data-testid=\"buttonElement\" class=\"uDW_Qe wixui-b": "2026-04-03T22:57:02.771892+00:00",
     "https://www.cabinetclgi.com/devis::<button aria-disabled=\"false\" aria-label=\"ENVOYER\" data-testid=\"buttonElement\" class=\"uDW_Qe wixui-b": "2026-04-03T22:57:03.804352+00:00",
-    "https://www.cabinetclgi.com/devis::<button data-hook=\"consent-banner-settings-button\" class=\"Wm1W5U bqbmwD Pg7AcP KiIMJv Mm8Lm6\">Param\u00e8": "2026-04-03T22:57:04.859025+00:00"
+    "https://www.cabinetclgi.com/devis::<button data-hook=\"consent-banner-settings-button\" class=\"Wm1W5U bqbmwD Pg7AcP KiIMJv Mm8Lm6\">Param\u00e8": "2026-04-03T22:57:04.859025+00:00",
+    "https://www.cabinetclgi.com/::<button data-hook=\"consent-banner-apply-button\" class=\"mQxxMq bqbmwD Pg7AcP dukD6Z \">Accepter</butto": "2026-04-03T23:14:52.880706+00:00"
   }
 }

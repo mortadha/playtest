@@ -157,8 +157,20 @@ function App() {
         try {
             const response = await axios.get(`${API}/tests/sessions`);
             setSessions(response.data);
+            // Load steps from the latest session if available
+            if (response.data.length > 0 && response.data[0].steps) {
+                setSteps(response.data[0].steps);
+            }
         } catch (e) {
             console.error("Failed to fetch sessions:", e);
+        }
+    };
+
+    const loadSessionSteps = (session) => {
+        if (session.steps && session.steps.length > 0) {
+            setSteps(session.steps);
+            setBugs(session.bugs || []);
+            setActiveTab('steps');
         }
     };
 
@@ -674,8 +686,7 @@ function App() {
                                                     <th>Date</th>
                                                     <th>URL</th>
                                                     <th>Status</th>
-                                                    <th>URLs</th>
-                                                    <th>Forms</th>
+                                                    <th>Étapes</th>
                                                     <th>Bugs</th>
                                                     <th>Actions</th>
                                                 </tr>
@@ -686,12 +697,20 @@ function App() {
                                                         <td>{new Date(session.started_at).toLocaleString('fr-FR')}</td>
                                                         <td className="max-w-[200px] truncate">{session.target_url}</td>
                                                         <td><StatusBadge status={session.status} /></td>
-                                                        <td>{session.urls_scanned}</td>
-                                                        <td>{session.forms_found}</td>
+                                                        <td>{session.steps?.length || 0}</td>
                                                         <td className={session.bugs_found > 0 ? 'text-red-500 font-bold' : ''}>
                                                             {session.bugs_found}
                                                         </td>
-                                                        <td>
+                                                        <td className="flex gap-1">
+                                                            {session.steps?.length > 0 && (
+                                                                <Button
+                                                                    onClick={() => loadSessionSteps(session)}
+                                                                    className="btn btn-primary rounded-none text-xs px-2 py-1"
+                                                                    data-testid={`btn-view-steps-${i}`}
+                                                                >
+                                                                    <Camera size={14} />
+                                                                </Button>
+                                                            )}
                                                             <Button
                                                                 onClick={() => deleteSession(session.id)}
                                                                 className="btn btn-secondary rounded-none text-xs px-2 py-1"
