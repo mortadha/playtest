@@ -47,6 +47,84 @@
       "forms_found": 1,
       "bugs_found": 0,
       "bugs": []
+    },
+    {
+      "id": "9637f19d-c1f8-41c6-a468-0eb55c8e8ccb",
+      "target_url": "https://httpbin.org/forms/post",
+      "status": "completed",
+      "started_at": "2026-04-03T21:43:43.246214+00:00",
+      "ended_at": "2026-04-03T21:43:47.245766+00:00",
+      "urls_scanned": 1,
+      "elements_found": 0,
+      "forms_found": 1,
+      "bugs_found": 0,
+      "bugs": []
+    },
+    {
+      "id": "a4ef513f-86f8-4030-aab1-77988e85de63",
+      "target_url": "https://httpbin.org/status/404",
+      "status": "completed",
+      "started_at": "2026-04-03T21:45:11.222880+00:00",
+      "ended_at": "2026-04-03T21:45:14.379362+00:00",
+      "urls_scanned": 1,
+      "elements_found": 0,
+      "forms_found": 0,
+      "bugs_found": 2,
+      "bugs": [
+        {
+          "id": "62be69cf-7883-4635-9684-9ef2ca2ef8a3",
+          "type": "http_error",
+          "message": "HTTP 404: ",
+          "url": "https://httpbin.org/status/404",
+          "selector": null,
+          "screenshot": null,
+          "severity": "medium",
+          "timestamp": "2026-04-03T21:45:13.311426+00:00"
+        },
+        {
+          "id": "3b877fa8-74be-4a9b-a9cd-4eaa5caacd0e",
+          "type": "console_error",
+          "message": "Failed to load resource: the server responded with a status of 404 ()",
+          "url": "https://httpbin.org/status/404",
+          "selector": null,
+          "screenshot": null,
+          "severity": "high",
+          "timestamp": "2026-04-03T21:45:14.315042+00:00"
+        }
+      ]
+    },
+    {
+      "id": "32a2c8a6-f58c-48a5-aae8-ab02cf82e870",
+      "target_url": "https://httpbin.org/status/500",
+      "status": "completed",
+      "started_at": "2026-04-03T21:45:43.511637+00:00",
+      "ended_at": "2026-04-03T21:45:46.648591+00:00",
+      "urls_scanned": 1,
+      "elements_found": 0,
+      "forms_found": 0,
+      "bugs_found": 2,
+      "bugs": [
+        {
+          "id": "727fec89-41d0-49bd-803a-7dd4a47509b1",
+          "type": "http_error",
+          "message": "HTTP 500: ",
+          "url": "https://httpbin.org/status/500",
+          "selector": null,
+          "screenshot": null,
+          "severity": "high",
+          "timestamp": "2026-04-03T21:45:45.499058+00:00"
+        },
+        {
+          "id": "84cdc846-fbc2-4278-98cc-9ac39b4b8fce",
+          "type": "console_error",
+          "message": "Failed to load resource: the server responded with a status of 500 ()",
+          "url": "https://httpbin.org/status/500",
+          "selector": null,
+          "screenshot": null,
+          "severity": "high",
+          "timestamp": "2026-04-03T21:45:46.501766+00:00"
+        }
+      ]
     }
   ],
   "tested_elements": {
