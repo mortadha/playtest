@@ -1,9 +1,12 @@
+import os
+# Set Playwright browsers path BEFORE any imports
+os.environ["PLAYWRIGHT_BROWSERS_PATH"] = "/pw-browsers"
+
 from fastapi import FastAPI, APIRouter, WebSocket, WebSocketDisconnect, BackgroundTasks
 from fastapi.responses import JSONResponse
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
-import os
 import logging
 import json
 import asyncio
@@ -171,7 +174,7 @@ async def run_test_exploration(session_id: str, config: TestConfig):
         await manager.broadcast({"type": "status", "status": "running", "session_id": session_id})
         
         async with async_playwright() as p:
-            browser = await p.chromium.launch(headless=True)
+            browser = await p.chromium.launch(headless=True, args=['--no-sandbox', '--disable-dev-shm-usage'])
             context = await browser.new_context(
                 viewport={"width": 1920, "height": 1080},
                 ignore_https_errors=True

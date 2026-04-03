@@ -1,4 +1,55 @@
 {
-  "sessions": [],
-  "tested_elements": {}
+  "sessions": [
+    {
+      "id": "354ed056-67ab-4809-8adb-825150ca2c50",
+      "target_url": "https://www.cabinetclgi.com/",
+      "status": "stopped",
+      "started_at": "2026-04-03T21:39:22.890004+00:00",
+      "ended_at": "2026-04-03T21:40:01.987015+00:00",
+      "urls_scanned": 2,
+      "elements_found": 9,
+      "forms_found": 2,
+      "bugs_found": 0,
+      "bugs": []
+    },
+    {
+      "id": "506ecf54-5f14-4a4f-a38c-64f40fab5484",
+      "target_url": "https://httpbin.org/forms/post",
+      "status": "completed",
+      "started_at": "2026-04-03T21:40:12.378438+00:00",
+      "ended_at": "2026-04-03T21:40:15.935406+00:00",
+      "urls_scanned": 1,
+      "elements_found": 1,
+      "forms_found": 0,
+      "bugs_found": 0,
+      "bugs": []
+    },
+    {
+      "id": "39c9cef3-b8d5-459e-98ab-494977a06671",
+      "target_url": "https://httpbin.org/forms/post",
+      "status": "completed",
+      "started_at": "2026-04-03T21:41:48.229389+00:00",
+      "ended_at": "2026-04-03T21:41:51.480177+00:00",
+      "urls_scanned": 1,
+      "elements_found": 0,
+      "forms_found": 1,
+      "bugs_found": 0,
+      "bugs": []
+    },
+    {
+      "id": "d375c1a4-01a1-4afb-ae32-f4709d624dcf",
+      "target_url": "https://httpbin.org/forms/post",
+      "status": "completed",
+      "started_at": "2026-04-03T21:41:53.292592+00:00",
+      "ended_at": "2026-04-03T21:41:56.457662+00:00",
+      "urls_scanned": 1,
+      "elements_found": 0,
+      "forms_found": 1,
+      "bugs_found": 0,
+      "bugs": []
+    }
+  ],
+  "tested_elements": {
+    "https://httpbin.org/forms/post::<button>Submit order</button>": "2026-04-03T21:40:15.880588+00:00"
+  }
 }
