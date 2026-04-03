@@ -105,6 +105,14 @@ class DiscoveredElement(BaseModel):
     text: Optional[str] = None
     tested: bool = False
 
+class TestStep(BaseModel):
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    type: str  # visit, click, fill_form, submit
+    description: str
+    url: str
+    screenshot: Optional[str] = None
+    timestamp: str = Field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
+
 class TestSession(BaseModel):
     model_config = ConfigDict(extra="ignore")
     
@@ -120,6 +128,7 @@ class TestSession(BaseModel):
     visited_urls: List[str] = []
     tested_elements: List[str] = []
     bugs: List[Bug] = []
+    steps: List[TestStep] = []
 
 class TestSessionCreate(BaseModel):
     target_url: str
@@ -150,6 +159,39 @@ def mark_element_tested(url: str, selector: str):
     key = f"{url}::{selector}"
     history["tested_elements"][key] = datetime.now(timezone.utc).isoformat()
     save_test_history(history)
+
+# Helper to capture step screenshot
+async def capture_step_screenshot(page, step_type: str, description: str, url: str, session_id: str, db_ref, manager_ref):
+    screenshot_id = str(uuid.uuid4())
+    screenshot_path = SCREENSHOTS_DIR / f"{screenshot_id}.png"
+    screenshot_url = None
+    
+    try:
+        await page.screenshot(path=str(screenshot_path), full_page=False)
+        screenshot_url = f"/api/screenshots/{screenshot_id}.png"
+    except:
+        pass
+    
+    step = TestStep(
+        type=step_type,
+        description=description,
+        url=url,
+        screenshot=screenshot_url
+    )
+    
+    # Save to DB
+    await db_ref.test_sessions.update_one(
+        {"id": session_id},
+        {"$push": {"steps": step.model_dump()}}
+    )
+    
+    # Broadcast to frontend
+    await manager_ref.broadcast({
+        "type": "step",
+        "step": step.model_dump()
+    })
+    
+    return step
 
 # Playwright Test Engine
 async def run_test_exploration(session_id: str, config: TestConfig):
@@ -267,6 +309,11 @@ async def run_test_exploration(session_id: str, config: TestConfig):
                                 response = None
                         else:
                             raise nav_error
+                    
+                    # Capture screenshot after visiting page
+                    await capture_step_screenshot(
+                        page, "visit", f"Visited: {current_url}", current_url, session_id, db, manager
+                    )
                     
                     # Check for HTTP errors
                     if response and response.status >= 400:
@@ -408,6 +455,12 @@ async def run_test_exploration(session_id: str, config: TestConfig):
                                 try:
                                     await button.click(timeout=5000)
                                     await asyncio.sleep(1)
+                                    
+                                    # Capture screenshot after clicking button
+                                    await capture_step_screenshot(
+                                        page, "click", f"Clicked button: {text[:50]}", current_url, session_id, db, manager
+                                    )
+                                    
                                     mark_element_tested(current_url, selector)
                                 except Exception as e:
                                     # Button click failed - might be a bug
@@ -522,12 +575,22 @@ async def run_test_exploration(session_id: str, config: TestConfig):
                                     except:
                                         pass
                                 
+                                # Capture screenshot after filling form
+                                await capture_step_screenshot(
+                                    page, "fill_form", "Filled form fields", current_url, session_id, db, manager
+                                )
+                                
                                 # Submit form
                                 submit_btn = await form.query_selector("button[type='submit'], input[type='submit']")
                                 if submit_btn:
                                     try:
                                         await submit_btn.click()
                                         await asyncio.sleep(2)
+                                        
+                                        # Capture screenshot after form submission
+                                        await capture_step_screenshot(
+                                            page, "submit", "Submitted form", current_url, session_id, db, manager
+                                        )
                                         
                                         # Check for errors after form submission
                                         for error in errors_found:

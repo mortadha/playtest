@@ -17,7 +17,11 @@ import {
     CheckCircle,
     WarningCircle,
     XCircle,
-    Spinner
+    Spinner,
+    Camera,
+    CursorClick,
+    TextT,
+    PaperPlaneTilt
 } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -39,6 +43,7 @@ function App() {
     const [currentSession, setCurrentSession] = useState(null);
     const [logs, setLogs] = useState([]);
     const [bugs, setBugs] = useState([]);
+    const [steps, setSteps] = useState([]);
     const [stats, setStats] = useState({
         urls_scanned: 0,
         elements_found: 0,
@@ -82,6 +87,10 @@ function App() {
                         break;
                     case "action":
                         addLog("info", data.message);
+                        break;
+                    case "step":
+                        setSteps(prev => [...prev, data.step]);
+                        addLog("success", `Step: ${data.step.description}`);
                         break;
                     case "bug":
                         setBugs(prev => [...prev, data.bug]);
@@ -188,6 +197,7 @@ function App() {
         try {
             setLogs([]);
             setBugs([]);
+            setSteps([]);
             setStats({ urls_scanned: 0, elements_found: 0, forms_found: 0, bugs_found: 0 });
 
             const config = {
@@ -285,6 +295,14 @@ function App() {
                     >
                         <Bug size={20} weight="bold" />
                         Bugs ({bugs.length})
+                    </div>
+                    <div 
+                        className={`nav-item ${activeTab === 'steps' ? 'active' : ''}`}
+                        onClick={() => setActiveTab('steps')}
+                        data-testid="nav-steps"
+                    >
+                        <Camera size={20} weight="bold" />
+                        Étapes ({steps.length})
                     </div>
                     <div 
                         className={`nav-item ${activeTab === 'history' ? 'active' : ''}`}
@@ -528,6 +546,61 @@ function App() {
                                         )}
                                         <div className="text-xs text-zinc-400 mt-2 font-mono">
                                             {bug.timestamp}
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+                    </div>
+                )}
+
+                {activeTab === 'steps' && (
+                    <div className="space-y-6" data-testid="steps-view">
+                        <div className="flex items-center justify-between">
+                            <h2 className="text-2xl font-black tracking-tighter" style={{ fontFamily: 'var(--font-heading)' }}>
+                                ÉTAPES DU TEST
+                            </h2>
+                            <span className="status-indicator" style={{ backgroundColor: '#0047FF', color: 'white' }}>
+                                <Camera size={14} /> {steps.length} étapes
+                            </span>
+                        </div>
+
+                        {steps.length === 0 ? (
+                            <div className="empty-state">
+                                <Camera size={48} className="empty-state-icon" />
+                                <p className="empty-state-text">Aucune étape capturée. Lancez un test pour voir les captures d'écran.</p>
+                            </div>
+                        ) : (
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                                {steps.map((step, i) => (
+                                    <div key={step.id || i} className="border border-zinc-200 bg-white" data-testid={`step-item-${i}`}>
+                                        <div className="bg-zinc-900 text-white px-4 py-2 flex items-center gap-2">
+                                            {step.type === 'visit' && <MagnifyingGlass size={16} />}
+                                            {step.type === 'click' && <CursorClick size={16} />}
+                                            {step.type === 'fill_form' && <TextT size={16} />}
+                                            {step.type === 'submit' && <PaperPlaneTilt size={16} />}
+                                            <span className="text-xs font-mono uppercase tracking-wider">
+                                                {step.type === 'visit' && 'Visite'}
+                                                {step.type === 'click' && 'Clic'}
+                                                {step.type === 'fill_form' && 'Formulaire'}
+                                                {step.type === 'submit' && 'Soumission'}
+                                            </span>
+                                            <span className="ml-auto text-xs text-zinc-400">#{i + 1}</span>
+                                        </div>
+                                        {step.screenshot && (
+                                            <img 
+                                                src={`${BACKEND_URL}${step.screenshot}`}
+                                                alt={`Étape ${i + 1}: ${step.type}`}
+                                                className="w-full h-48 object-cover bg-zinc-100"
+                                                data-testid={`step-screenshot-${i}`}
+                                            />
+                                        )}
+                                        <div className="p-3">
+                                            <p className="text-sm font-medium text-zinc-800 truncate">{step.description}</p>
+                                            <p className="text-xs text-zinc-500 truncate mt-1">{step.url}</p>
+                                            <p className="text-xs text-zinc-400 font-mono mt-2">
+                                                {new Date(step.timestamp).toLocaleTimeString('fr-FR')}
+                                            </p>
                                         </div>
                                     </div>
                                 ))}
