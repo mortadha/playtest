@@ -1,438 +1,141 @@
 {
   "sessions": [
     {
-      "id": "354ed056-67ab-4809-8adb-825150ca2c50",
-      "target_url": "https://www.cabinetclgi.com/",
+      "id": "5091786d-c4fd-4a20-8bc3-ffcf0553d555",
+      "target_url": "https://www.admissions.fr/",
       "status": "stopped",
-      "started_at": "2026-04-03T21:39:22.890004+00:00",
-      "ended_at": "2026-04-03T21:40:01.987015+00:00",
-      "urls_scanned": 2,
-      "elements_found": 9,
-      "forms_found": 2,
-      "bugs_found": 0,
-      "bugs": []
-    },
-    {
-      "id": "506ecf54-5f14-4a4f-a38c-64f40fab5484",
-      "target_url": "https://httpbin.org/forms/post",
-      "status": "completed",
-      "started_at": "2026-04-03T21:40:12.378438+00:00",
-      "ended_at": "2026-04-03T21:40:15.935406+00:00",
+      "started_at": "2026-04-03T22:42:28.173371+00:00",
+      "ended_at": "2026-04-03T22:45:41.923330+00:00",
       "urls_scanned": 1,
-      "elements_found": 1,
-      "forms_found": 0,
-      "bugs_found": 0,
-      "bugs": []
-    },
-    {
-      "id": "39c9cef3-b8d5-459e-98ab-494977a06671",
-      "target_url": "https://httpbin.org/forms/post",
-      "status": "completed",
-      "started_at": "2026-04-03T21:41:48.229389+00:00",
-      "ended_at": "2026-04-03T21:41:51.480177+00:00",
-      "urls_scanned": 1,
-      "elements_found": 0,
+      "elements_found": 11,
       "forms_found": 1,
-      "bugs_found": 0,
-      "bugs": []
-    },
-    {
-      "id": "d375c1a4-01a1-4afb-ae32-f4709d624dcf",
-      "target_url": "https://httpbin.org/forms/post",
-      "status": "completed",
-      "started_at": "2026-04-03T21:41:53.292592+00:00",
-      "ended_at": "2026-04-03T21:41:56.457662+00:00",
-      "urls_scanned": 1,
-      "elements_found": 0,
-      "forms_found": 1,
-      "bugs_found": 0,
-      "bugs": []
-    },
-    {
-      "id": "9637f19d-c1f8-41c6-a468-0eb55c8e8ccb",
-      "target_url": "https://httpbin.org/forms/post",
-      "status": "completed",
-      "started_at": "2026-04-03T21:43:43.246214+00:00",
-      "ended_at": "2026-04-03T21:43:47.245766+00:00",
-      "urls_scanned": 1,
-      "elements_found": 0,
-      "forms_found": 1,
-      "bugs_found": 0,
-      "bugs": []
-    },
-    {
-      "id": "a4ef513f-86f8-4030-aab1-77988e85de63",
-      "target_url": "https://httpbin.org/status/404",
-      "status": "completed",
-      "started_at": "2026-04-03T21:45:11.222880+00:00",
-      "ended_at": "2026-04-03T21:45:14.379362+00:00",
-      "urls_scanned": 1,
-      "elements_found": 0,
-      "forms_found": 0,
       "bugs_found": 2,
       "bugs": [
         {
-          "id": "62be69cf-7883-4635-9684-9ef2ca2ef8a3",
-          "type": "http_error",
-          "message": "HTTP 404: ",
-          "url": "https://httpbin.org/status/404",
+          "id": "5db95225-253b-4d8d-9455-e1bdac80e3e6",
+          "type": "console_error",
+          "message": "Failed to load resource: the server responded with a status of 403 (Forbidden)",
+          "url": "https://www.admissions.fr/",
           "selector": null,
-          "screenshot": null,
-          "severity": "medium",
-          "timestamp": "2026-04-03T21:45:13.311426+00:00"
+          "screenshot": "/api/screenshots/fd246657-c725-4a4a-9e9c-2538e846f431.png",
+          "severity": "high",
+          "timestamp": "2026-04-03T22:42:34.112926+00:00"
         },
         {
-          "id": "3b877fa8-74be-4a9b-a9cd-4eaa5caacd0e",
-          "type": "console_error",
-          "message": "Failed to load resource: the server responded with a status of 404 ()",
-          "url": "https://httpbin.org/status/404",
-          "selector": null,
+          "id": "2a9c0540-941d-4571-8bd1-886345cad610",
+          "type": "form_submit_error",
+          "message": "Form submission failed: ElementHandle.click: Timeout 30000ms exceeded.\nCall log:\n  - attempting click action\n    2 \u00d7 waiting for element to be visible, enabled and stable\n      - element is not visible\n    - retrying click action\n    - waiting 20ms\n    2 \u00d7 waiting for element to be visible, enabled and stable\n      - element is not visible\n    - retrying click action\n      - waiting 100ms\n    56 \u00d7 waiting for element to be visible, enabled and stable\n       - element is not visible\n     - retrying click action\n       - waiting 500ms\n",
+          "url": "https://www.admissions.fr/",
+          "selector": "<form id=\"lb-contact-form\" method=\"get\" onsubmit=\"return false;\" data-hs-cf-bound=\"true\">\n          ",
           "screenshot": null,
-          "severity": "high",
-          "timestamp": "2026-04-03T21:45:14.315042+00:00"
+          "severity": "medium",
+          "timestamp": "2026-04-03T22:45:41.866714+00:00"
         }
       ]
     },
     {
-      "id": "32a2c8a6-f58c-48a5-aae8-ab02cf82e870",
-      "target_url": "https://httpbin.org/status/500",
+      "id": "82d7a1fd-cba9-4c2c-83a9-15b7368e064a",
+      "target_url": "https://www.pexels.com/fr-fr/",
       "status": "completed",
-      "started_at": "2026-04-03T21:45:43.511637+00:00",
-      "ended_at": "2026-04-03T21:45:46.648591+00:00",
+      "started_at": "2026-04-03T22:47:14.596861+00:00",
+      "ended_at": "2026-04-03T22:47:19.629804+00:00",
       "urls_scanned": 1,
       "elements_found": 0,
       "forms_found": 0,
-      "bugs_found": 2,
+      "bugs_found": 9,
       "bugs": [
         {
-          "id": "727fec89-41d0-49bd-803a-7dd4a47509b1",
+          "id": "a9c963e1-cc99-4213-8c18-037b2b10148f",
           "type": "http_error",
-          "message": "HTTP 500: ",
-          "url": "https://httpbin.org/status/500",
+          "message": "HTTP 403: ",
+          "url": "https://www.pexels.com/fr-fr/",
           "selector": null,
-          "screenshot": null,
-          "severity": "high",
-          "timestamp": "2026-04-03T21:45:45.499058+00:00"
-        },
-        {
-          "id": "84cdc846-fbc2-4278-98cc-9ac39b4b8fce",
-          "type": "console_error",
-          "message": "Failed to load resource: the server responded with a status of 500 ()",
-          "url": "https://httpbin.org/status/500",
-          "selector": null,
-          "screenshot": null,
-          "severity": "high",
-          "timestamp": "2026-04-03T21:45:46.501766+00:00"
-        }
-      ]
-    },
-    {
-      "id": "3a1c1a1d-87f0-4314-a499-26e6788cb7ae",
-      "target_url": "https://www.cabinetclgi.com/",
-      "status": "completed",
-      "started_at": "2026-04-03T21:46:50.918697+00:00",
-      "ended_at": "2026-04-03T21:49:28.482906+00:00",
-      "urls_scanned": 3,
-      "elements_found": 15,
-      "forms_found": 3,
-      "bugs_found": 8,
-      "bugs": [
-        {
-          "id": "a2ee2e27-974f-4684-8a32-2491969bd640",
-          "type": "navigation_error",
-          "message": "Failed to navigate: Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.cabinetclgi.com/qui-sommes-nous\", waiting until \"networkidle\"\n",
-          "url": "https://www.cabinetclgi.com/qui-sommes-nous",
-          "selector": null,
-          "screenshot": null,
-          "severity": "high",
-          "timestamp": "2026-04-03T21:48:05.564389+00:00"
-        },
-        {
-          "id": "a5cbcd1c-6010-4903-bf51-32b99e1519f3",
-          "type": "console_error",
-          "message": "Failed to load resource: the server responded with a status of 403 ()",
-          "url": "https://www.cabinetclgi.com/espace-client",
-          "selector": null,
-          "screenshot": null,
-          "severity": "high",
-          "timestamp": "2026-04-03T21:48:09.794850+00:00"
-        },
-        {
-          "id": "1432b4e9-ce69-4266-ae4f-78098c156538",
-          "type": "console_error",
-          "message": "Failed to load resource: the server responded with a status of 403 ()",
-          "url": "https://www.cabinetclgi.com/espace-client",
-          "selector": null,
-          "screenshot": null,
-          "severity": "high",
-          "timestamp": "2026-04-03T21:48:09.796160+00:00"
-        },
-        {
-          "id": "f21e501e-b2f7-4375-959c-1d6c35f07340",
-          "type": "console_error",
-          "message": "Failed to load resource: the server responded with a status of 403 ()",
-          "url": "https://www.cabinetclgi.com/espace-client",
-          "selector": null,
-          "screenshot": null,
-          "severity": "high",
-          "timestamp": "2026-04-03T21:48:09.796652+00:00"
-        },
-        {
-          "id": "72f9b753-b50b-40fd-b404-61ab349829ff",
-          "type": "console_error",
-          "message": "Failed to load resource: the server responded with a status of 403 ()",
-          "url": "https://www.cabinetclgi.com/espace-client",
-          "selector": null,
-          "screenshot": null,
-          "severity": "high",
-          "timestamp": "2026-04-03T21:48:09.797049+00:00"
-        },
-        {
-          "id": "bff4179c-0539-4fd0-9683-107c04d7e771",
-          "type": "navigation_error",
-          "message": "Failed to navigate: Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.cabinetclgi.com/devis\", waiting until \"networkidle\"\n",
-          "url": "https://www.cabinetclgi.com/devis",
-          "selector": null,
-          "screenshot": null,
-          "severity": "high",
-          "timestamp": "2026-04-03T21:48:57.991042+00:00"
-        },
-        {
-          "id": "615e769b-5b89-4876-86f7-6aee85fee0f2",
-          "type": "navigation_error",
-          "message": "Failed to navigate: Page.goto: Download is starting\nCall log:\n  - navigating to \"https://www.cabinetclgi.com/_files/ugd/3eba13_7943ed2059ce475594f375599f48e000.pdf\", waiting until \"networkidle\"\n",
-          "url": "https://www.cabinetclgi.com/_files/ugd/3eba13_7943ed2059ce475594f375599f48e000.pdf",
-          "selector": null,
-          "screenshot": null,
-          "severity": "high",
-          "timestamp": "2026-04-03T21:48:58.427864+00:00"
-        },
-        {
-          "id": "1e66a3a8-3e50-4c3b-9467-7e1388579ec2",
-          "type": "navigation_error",
-          "message": "Failed to navigate: Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.cabinetclgi.com/qui-sommes-nous\", waiting until \"networkidle\"\n",
-          "url": "https://www.cabinetclgi.com/qui-sommes-nous",
-          "selector": null,
-          "screenshot": null,
-          "severity": "high",
-          "timestamp": "2026-04-03T21:49:28.429692+00:00"
-        }
-      ]
-    },
-    {
-      "id": "217cc98e-66c6-4f4d-8e29-ad0adf934b12",
-      "target_url": "https://www.cabinetclgi.com/espace-client",
-      "status": "completed",
-      "started_at": "2026-04-03T22:31:16.226261+00:00",
-      "ended_at": "2026-04-03T22:32:50.403340+00:00",
-      "urls_scanned": 3,
-      "elements_found": 6,
-      "forms_found": 4,
-      "bugs_found": 7,
-      "bugs": [
-        {
-          "id": "11dfef17-f692-41f2-bf4d-cffa7b32c20c",
-          "type": "console_error",
-          "message": "Failed to load resource: the server responded with a status of 403 ()",
-          "url": "https://www.cabinetclgi.com/espace-client",
-          "selector": null,
-          "screenshot": null,
-          "severity": "high",
-          "timestamp": "2026-04-03T22:31:21.206130+00:00"
-        },
-        {
-          "id": "b547afd4-b328-4030-a1e1-bb505d57a3f7",
-          "type": "console_error",
-          "message": "Failed to load resource: the server responded with a status of 403 ()",
-          "url": "https://www.cabinetclgi.com/espace-client",
-          "selector": null,
-          "screenshot": null,
-          "severity": "high",
-          "timestamp": "2026-04-03T22:31:21.207356+00:00"
-        },
-        {
-          "id": "a21fb6e0-2511-4224-b13a-6ea3cd070e1b",
-          "type": "console_error",
-          "message": "Failed to load resource: the server responded with a status of 403 ()",
-          "url": "https://www.cabinetclgi.com/espace-client",
-          "selector": null,
-          "screenshot": null,
-          "severity": "high",
-          "timestamp": "2026-04-03T22:31:21.207861+00:00"
-        },
-        {
-          "id": "876db494-8ac3-4ae7-a9c6-a0c0897e376c",
-          "type": "console_error",
-          "message": "Failed to load resource: the server responded with a status of 403 ()",
-          "url": "https://www.cabinetclgi.com/espace-client",
-          "selector": null,
-          "screenshot": null,
-          "severity": "high",
-          "timestamp": "2026-04-03T22:31:21.208307+00:00"
-        },
-        {
-          "id": "ca48067d-56eb-4f4c-8aa6-fafdd392c63d",
-          "type": "navigation_error",
-          "message": "Failed to navigate: Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.cabinetclgi.com/qui-sommes-nous\", waiting until \"networkidle\"\n",
-          "url": "https://www.cabinetclgi.com/qui-sommes-nous",
-          "selector": null,
-          "screenshot": null,
-          "severity": "high",
-          "timestamp": "2026-04-03T22:32:07.755518+00:00"
-        },
-        {
-          "id": "028384ce-a2c3-457e-8623-8de089b34f44",
-          "type": "navigation_error",
-          "message": "Failed to navigate: Page.goto: Download is starting\nCall log:\n  - navigating to \"https://www.cabinetclgi.com/_files/ugd/3eba13_7943ed2059ce475594f375599f48e000.pdf\", waiting until \"networkidle\"\n",
-          "url": "https://www.cabinetclgi.com/_files/ugd/3eba13_7943ed2059ce475594f375599f48e000.pdf",
-          "selector": null,
-          "screenshot": null,
-          "severity": "high",
-          "timestamp": "2026-04-03T22:32:20.276110+00:00"
-        },
-        {
-          "id": "0d1d69c0-3f0a-4f77-9cf9-7c95fd9632b4",
-          "type": "navigation_error",
-          "message": "Failed to navigate: Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.cabinetclgi.com/qui-sommes-nous\", waiting until \"networkidle\"\n",
-          "url": "https://www.cabinetclgi.com/qui-sommes-nous",
-          "selector": null,
-          "screenshot": null,
-          "severity": "high",
-          "timestamp": "2026-04-03T22:32:50.286753+00:00"
-        }
-      ]
-    },
-    {
-      "id": "3d3630d3-acb0-40d6-bfe2-4f8d23fc9013",
-      "target_url": "https://httpbin.org/status/500",
-      "status": "completed",
-      "started_at": "2026-04-03T22:34:23.997525+00:00",
-      "ended_at": "2026-04-03T22:34:27.221878+00:00",
-      "urls_scanned": 1,
-      "elements_found": 0,
-      "forms_found": 0,
-      "bugs_found": 2,
-      "bugs": [
-        {
-          "id": "acb959e6-888e-4a8c-9297-9f38cbc9f2c8",
-          "type": "http_error",
-          "message": "HTTP 500: ",
-          "url": "https://httpbin.org/status/500",
-          "selector": null,
-          "screenshot": "/api/screenshots/c3f15814-922d-40b7-a7aa-b2098538131e.png",
-          "severity": "high",
-          "timestamp": "2026-04-03T22:34:25.970849+00:00"
-        },
-        {
-          "id": "2e0b0476-b89e-499e-9709-78ef22939402",
-          "type": "console_error",
-          "message": "Failed to load resource: the server responded with a status of 500 ()",
-          "url": "https://httpbin.org/status/500",
-          "selector": null,
-          "screenshot": "/api/screenshots/d50522e6-7b2e-4bd9-a3d3-2baef022b603.png",
-          "severity": "high",
-          "timestamp": "2026-04-03T22:34:27.018926+00:00"
-        }
-      ]
-    },
-    {
-      "id": "221a29c1-58b0-4a83-a0e3-ebccffe63907",
-      "target_url": "https://www.google.com/nonexistent-page-404",
-      "status": "completed",
-      "started_at": "2026-04-03T22:34:43.241985+00:00",
-      "ended_at": "2026-04-03T22:34:47.728699+00:00",
-      "urls_scanned": 2,
-      "elements_found": 0,
-      "forms_found": 0,
-      "bugs_found": 4,
-      "bugs": [
-        {
-          "id": "41f4f595-d8e5-4b22-8465-3def08010aca",
-          "type": "http_error",
-          "message": "HTTP 404: ",
-          "url": "https://www.google.com/nonexistent-page-404",
-          "selector": null,
-          "screenshot": "/api/screenshots/a6aff900-9cb8-4c57-8af6-f33d85c29c4d.png",
+          "screenshot": "/api/screenshots/812ec2ad-c8c9-431e-bb40-0e6ecfcb93a1.png",
           "severity": "medium",
-          "timestamp": "2026-04-03T22:34:44.624273+00:00"
+          "timestamp": "2026-04-03T22:47:15.628468+00:00"
         },
         {
-          "id": "2e44e051-f218-4faa-b1f5-a6d2385c4c30",
+          "id": "2d332202-1b4c-47c1-81cc-a3bd0d05b7c1",
           "type": "console_error",
-          "message": "Failed to load resource: the server responded with a status of 404 ()",
-          "url": "https://www.google.com/nonexistent-page-404",
+          "message": "Failed to load resource: the server responded with a status of 403 ()",
+          "url": "https://www.pexels.com/fr-fr/",
           "selector": null,
-          "screenshot": "/api/screenshots/046efc98-141d-42c2-885d-a8782286a9d6.png",
+          "screenshot": "/api/screenshots/df707448-65d3-4835-833d-ebdd0e9adb8b.png",
           "severity": "high",
-          "timestamp": "2026-04-03T22:34:45.671964+00:00"
+          "timestamp": "2026-04-03T22:47:17.479395+00:00"
         },
         {
-          "id": "844d1380-273e-4ed0-9151-5cf67108ef15",
-          "type": "http_error",
-          "message": "HTTP 404: ",
-          "url": "https://www.google.com/nonexistent-page-404//www.google.com/",
-          "selector": null,
-          "screenshot": "/api/screenshots/6f77c93f-d472-49fd-ac69-0b61ca0fd780.png",
-          "severity": "medium",
-          "timestamp": "2026-04-03T22:34:46.473458+00:00"
-        },
-        {
-          "id": "0969ef6e-ff44-4b2f-abfe-043963987cfb",
+          "id": "69cf0338-31f0-4b0f-a116-e5ee9ff9f9d3",
           "type": "console_error",
-          "message": "Failed to load resource: the server responded with a status of 404 ()",
-          "url": "https://www.google.com/nonexistent-page-404//www.google.com/",
+          "message": "Failed to load resource: the server responded with a status of 403 ()",
+          "url": "https://www.pexels.com/fr-fr/",
           "selector": null,
-          "screenshot": "/api/screenshots/adb05c5b-7661-4eaf-a971-a9b822e2253a.png",
+          "screenshot": "/api/screenshots/f71080f1-22ac-4914-b6c6-93a844948df6.png",
           "severity": "high",
-          "timestamp": "2026-04-03T22:34:47.522541+00:00"
-        }
-      ]
-    },
-    {
-      "id": "bb1386c5-4564-42f8-b4d6-3e80dbb7e050",
-      "target_url": "https://httpbin.org/status/404",
-      "status": "completed",
-      "started_at": "2026-04-03T22:35:21.388555+00:00",
-      "ended_at": "2026-04-03T22:35:25.880320+00:00",
-      "urls_scanned": 1,
-      "elements_found": 0,
-      "forms_found": 0,
-      "bugs_found": 2,
-      "bugs": [
-        {
-          "id": "9a91b28c-3956-4b08-b04c-eaa5be6c2f7e",
-          "type": "http_error",
-          "message": "HTTP 404: ",
-          "url": "https://httpbin.org/status/404",
-          "selector": null,
-          "screenshot": "/api/screenshots/82603e9d-02f2-4bc1-ac49-875c66329445.png",
-          "severity": "medium",
-          "timestamp": "2026-04-03T22:35:24.660941+00:00"
+          "timestamp": "2026-04-03T22:47:17.779035+00:00"
         },
         {
-          "id": "c39328e1-645b-4d98-808a-e6bf3970d512",
+          "id": "cd235a11-2d82-4373-bed1-ef9740f8138e",
           "type": "console_error",
-          "message": "Failed to load resource: the server responded with a status of 404 ()",
-          "url": "https://httpbin.org/status/404",
+          "message": "%c%d font-size:0;color:transparent NaN",
+          "url": "https://www.pexels.com/fr-fr/",
           "selector": null,
-          "screenshot": "/api/screenshots/f296857d-8d27-4dee-a97f-670bac447d25.png",
+          "screenshot": "/api/screenshots/5f5cf72b-ec4d-45e9-8a99-76d5c0ecc397.png",
           "severity": "high",
-          "timestamp": "2026-04-03T22:35:25.702249+00:00"
+          "timestamp": "2026-04-03T22:47:18.481185+00:00"
+        },
+        {
+          "id": "60dd4338-9b10-4d22-8cd1-dfbd828dcc6d",
+          "type": "console_error",
+          "message": "%c%d font-size:0;color:transparent NaN",
+          "url": "https://www.pexels.com/fr-fr/",
+          "selector": null,
+          "screenshot": "/api/screenshots/a93a51b8-c3ea-4926-85fe-69647aeb5edf.png",
+          "severity": "high",
+          "timestamp": "2026-04-03T22:47:18.626473+00:00"
+        },
+        {
+          "id": "adbcbfae-67bc-4413-9a12-6dbe0de313d7",
+          "type": "console_error",
+          "message": "Failed to load resource: the server responded with a status of 401 ()",
+          "url": "https://www.pexels.com/fr-fr/",
+          "selector": null,
+          "screenshot": "/api/screenshots/cca4e4c2-deb6-4aa9-b54b-69c5cc88f97d.png",
+          "severity": "high",
+          "timestamp": "2026-04-03T22:47:18.744300+00:00"
+        },
+        {
+          "id": "f62c6b89-385e-484b-8684-3e24754fd0db",
+          "type": "console_error",
+          "message": "Permissions policy violation: xr-spatial-tracking is not allowed in this document.",
+          "url": "https://www.pexels.com/fr-fr/",
+          "selector": null,
+          "screenshot": "/api/screenshots/32aaf970-a50a-418e-be6d-70e159a209f9.png",
+          "severity": "high",
+          "timestamp": "2026-04-03T22:47:18.927674+00:00"
+        },
+        {
+          "id": "0f617e16-e2a1-4fc1-bdd1-15472a5ba49e",
+          "type": "console_error",
+          "message": "Permissions policy violation: xr-spatial-tracking is not allowed in this document.",
+          "url": "https://www.pexels.com/fr-fr/",
+          "selector": null,
+          "screenshot": "/api/screenshots/92940872-fcfc-44f8-bb9e-cbb7f5546c52.png",
+          "severity": "high",
+          "timestamp": "2026-04-03T22:47:19.148872+00:00"
+        },
+        {
+          "id": "2ea7c985-006a-40d0-ad8c-cc087302c639",
+          "type": "console_error",
+          "message": " Note that 'script-src' was not explicitly set, so 'default-src' is used as a fallback.",
+          "url": "https://www.pexels.com/fr-fr/",
+          "selector": null,
+          "screenshot": "/api/screenshots/25bc731f-b943-4ecc-b10a-2aa1ac81b95b.png",
+          "severity": "high",
+          "timestamp": "2026-04-03T22:47:19.326733+00:00"
         }
       ]
     }
   ],
-  "tested_elements": {
-    "https://httpbin.org/forms/post::<button>Submit order</button>": "2026-04-03T21:40:15.880588+00:00",
-    "https://www.cabinetclgi.com/::<button aria-disabled=\"false\" aria-label=\"ENVOYER\" data-testid=\"buttonElement\" class=\"uDW_Qe wixui-b": "2026-04-03T21:47:02.027370+00:00",
-    "https://www.cabinetclgi.com/::<button data-hook=\"consent-banner-settings-button\" class=\"Wm1W5U bqbmwD Pg7AcP KiIMJv Mm8Lm6\">Param\u00e8": "2026-04-03T21:47:03.117235+00:00",
-    "https://www.cabinetclgi.com::<button aria-disabled=\"false\" aria-label=\"ENVOYER\" data-testid=\"buttonElement\" class=\"uDW_Qe wixui-b": "2026-04-03T21:47:23.573114+00:00",
-    "https://www.cabinetclgi.com::<button data-hook=\"consent-banner-settings-button\" class=\"Wm1W5U bqbmwD Pg7AcP KiIMJv Mm8Lm6\">Param\u00e8": "2026-04-03T21:47:24.626417+00:00",
-    "https://www.cabinetclgi.com/espace-client::<button aria-disabled=\"false\" aria-label=\"ENVOYER\" data-testid=\"buttonElement\" class=\"uDW_Qe wixui-b": "2026-04-03T21:48:16.005173+00:00",
-    "https://www.cabinetclgi.com/espace-client::<button data-hook=\"consent-banner-settings-button\" class=\"Wm1W5U bqbmwD Pg7AcP KiIMJv Mm8Lm6\">Param\u00e8": "2026-04-03T21:48:17.056350+00:00",
-    "https://www.cabinetclgi.com/espace-client::<button data-hook=\"consent-banner-apply-button\" class=\"mQxxMq bqbmwD Pg7AcP dukD6Z \">Accepter</butto": "2026-04-03T22:31:27.382772+00:00",
-    "https://www.cabinetclgi.com/devis::<button aria-disabled=\"false\" aria-label=\"Envoyer\" data-testid=\"buttonElement\" class=\"uDW_Qe wixui-b": "2026-04-03T22:32:17.000189+00:00",
-    "https://www.cabinetclgi.com/devis::<button aria-disabled=\"false\" aria-label=\"ENVOYER\" data-testid=\"buttonElement\" class=\"uDW_Qe wixui-b": "2026-04-03T22:32:18.032164+00:00",
-    "https://www.cabinetclgi.com/::<button data-hook=\"consent-banner-apply-button\" class=\"mQxxMq bqbmwD Pg7AcP dukD6Z \">Accepter</butto": "2026-04-03T22:35:44.772884+00:00"
-  }
+  "tested_elements": {}
 }

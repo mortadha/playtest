@@ -234,7 +234,24 @@ async def run_test_exploration(session_id: str, config: TestConfig):
                         "url": current_url
                     })
                     
-                    response = await page.goto(current_url, wait_until="networkidle", timeout=30000)
+                    # Use "load" instead of "networkidle" for faster loading
+                    # and increase timeout to 60 seconds
+                    try:
+                        response = await page.goto(current_url, wait_until="load", timeout=60000)
+                    except Exception as nav_error:
+                        # If "load" times out, try with "domcontentloaded" which is faster
+                        if "Timeout" in str(nav_error):
+                            await manager.broadcast({
+                                "type": "progress",
+                                "message": f"Slow page, retrying with fast mode: {current_url}",
+                                "url": current_url
+                            })
+                            try:
+                                response = await page.goto(current_url, wait_until="domcontentloaded", timeout=30000)
+                            except:
+                                response = None
+                        else:
+                            raise nav_error
                     
                     # Check for HTTP errors
                     if response and response.status >= 400:
@@ -548,11 +565,22 @@ async def run_test_exploration(session_id: str, config: TestConfig):
                     })
                     
                 except Exception as e:
+                    error_msg = str(e)
+                    # Don't treat timeout as a critical bug - it's often just a slow site
+                    if "Timeout" in error_msg:
+                        await manager.broadcast({
+                            "type": "progress",
+                            "message": f"Skipping slow page: {current_url}",
+                            "url": current_url
+                        })
+                        # Just log it as info, not as a bug
+                        continue
+                    
                     bug = Bug(
                         type="navigation_error",
-                        message=f"Failed to navigate: {str(e)}",
+                        message=f"Failed to navigate: {error_msg[:200]}",
                         url=current_url,
-                        severity=BugSeverity.HIGH
+                        severity=BugSeverity.MEDIUM
                     )
                     session.bugs.append(bug)
                     await db.test_sessions.update_one(
