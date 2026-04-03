@@ -1,0 +1,86 @@
+{
+  "theme": "light",
+  "archetype": "4 (Swiss & High-Contrast)",
+  "brand_identity": {
+    "domain": "Developer Tools / QA Automation Dashboard",
+    "tone": "Authority, Clarity, Truth. Objective, rigid, functional.",
+    "visual_mood": "Swiss Brutalist, technical command center."
+  },
+  "typography": {
+    "heading_font": "Chivo",
+    "body_font": "IBM Plex Sans",
+    "mono_font": "JetBrains Mono",
+    "import_urls": [
+      "https://fonts.googleapis.com/css2?family=Chivo:wght@300;400;700;900&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap"
+    ],
+    "hierarchy": {
+      "h1": "text-4xl sm:text-5xl font-black tracking-tighter",
+      "h2": "text-2xl sm:text-3xl font-bold tracking-tight",
+      "h3": "text-xl sm:text-2xl font-bold tracking-tight",
+      "body": "text-sm sm:text-base font-medium",
+      "mono_data": "font-mono text-xs sm:text-sm tracking-tight"
+    }
+  },
+  "colors": {
+    "primary_background": "#FFFFFF",
+    "secondary_background": "#F4F4F5",
+    "surface": "#FFFFFF",
+    "border": "#E4E4E7",
+    "text": {
+      "primary": "#0A0A0A",
+      "secondary": "#52525B",
+      "inverse": "#FFFFFF"
+    },
+    "accents": {
+      "brand": "#0047FF",
+      "error": "#FF3B30",
+      "warning": "#FFD600",
+      "success": "#00C566"
+    }
+  },
+  "surface_and_layout": {
+    "surface_strategy": "Grid Borders (The 'Technical' Look). Expose the skeleton. Make the grid visible.",
+    "borders": "1px solid border-zinc-200. Hover states border-black. Sharp corners.",
+    "radius": "rounded-none",
+    "shadows": "No shadows. Use flat contrasting borders for depth.",
+    "grid_system": "MODE B: THE 'CONTROL ROOM' GRID. Tight gaps (gap-4 or gap-0 for border-collapse). Subgrid for deep nesting. 3 to 4 main columns."
+  },
+  "components": {
+    "buttons": "Square edges (rounded-none). High contrast. Primary: bg-black text-white hover:bg-zinc-800. Secondary: bg-white text-black border border-zinc-200 hover:border-black.",
+    "inputs": "Shadcn input with rounded-none. 1px border. Focus state must use solid black border or ring.",
+    "cards": "border border-zinc-200 bg-white rounded-none p-6. Use tight paddings for internal data.",
+    "json_viewer": "Specific component for test history. Must use bg-zinc-950, text-zinc-100, font-mono, p-4, overflow-auto, leading-relaxed, tracking-tight. Add a 'Copy JSON' action button.",
+    "status_badges": "Square badges. uppercase, tracking-[0.1em], text-[10px] font-bold. Red for bug, Yellow for in-progress, Blue for queued."
+  },
+  "interactions_and_motion": {
+    "hover": "Instant color swaps or sharp border color changes. No soft opacity fades.",
+    "focus": "Strong, visible focus rings (ring-2 ring-black ring-offset-2) for accessibility.",
+    "loading": "Terminal-style ASCII loaders or rigid CSS steps animation. No smooth spinners."
+  },
+  "icons": {
+    "library": "@phosphor-icons/react",
+    "usage": "Use bold or regular weight. Always match icon size to text line-height."
+  },
+  "media_and_images": {
+    "rules": "Avoid decorative images. Function over form. Use imagery only for empty states or raw data placeholders.",
+    "urls": {
+      "empty_state_bg": {
+        "url": "https://images.pexels.com/photos/4065437/pexels-photo-4065437.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "description": "Abstract metallic honeycomb grid for empty states, representing structure and data."
+      }
+    }
+  },
+  "accessibility_and_testing": {
+    "contrast": "Ensure APCA/WCAG AA contrast. All text on background must exceed 4.5:1.",
+    "data_testid": "MANDATORY on all interactive and key informational elements (e.g., data-testid='start-exploration-btn', data-testid='bug-list-item'). Format: kebab-case, role-based."
+  },
+  "instructions_to_main_agent": [
+    "Build a sidebar layout with navigation and a main content area.",
+    "Implement Shadcn, but heavily strip rounded corners to match the brutalist tech aesthetic.",
+    "The dashboard needs a 'Control Room' feel: dense layout, clear metrics (Total Bugs, Forms Found, URLs Scanned).",
+    "Implement a JSON Viewer for test history using the specified monospace font and dark background.",
+    "Ensure the URL configuration form is prominent. Use Phosphor Icons for play/stop actions.",
+    "Run yarn add @phosphor-icons/react for icons.",
+    "Do not use generic Inter font. Apply Chivo, IBM Plex Sans, and JetBrains Mono globally."
+  ]
+}
