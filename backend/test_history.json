@@ -602,6 +602,17 @@
     "https://www.admissions.fr/::<button type=\"button\" class=\"button-atom button-atom--primary bde-button__button\">\n    \n        <spa": "2026-04-03T22:48:39.166254+00:00",
     "https://www.admissions.fr/::<button class=\"close-btn\" type=\"button\">\n            <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"": "2026-04-03T22:49:10.313184+00:00",
     "https://www.admissions.fr/::<button type=\"button\" class=\"button-atom button-atom--secondary bde-button__button\">\n    \n        <s": "2026-04-03T22:51:58.884295+00:00",
-    "https://httpbin.org/forms/post::<button>Submit order</button>": "2026-04-03T22:54:46.938974+00:00"
+    "https://httpbin.org/forms/post::<button>Submit order</button>": "2026-04-03T22:54:46.938974+00:00",
+    "https://www.cabinetclgi.com/::<button aria-disabled=\"false\" aria-label=\"ENVOYER\" data-testid=\"buttonElement\" class=\"uDW_Qe wixui-b": "2026-04-03T22:55:44.496593+00:00",
+    "https://www.cabinetclgi.com/::<button data-hook=\"consent-banner-settings-button\" class=\"Wm1W5U bqbmwD Pg7AcP KiIMJv Mm8Lm6\">Param\u00e8": "2026-04-03T22:55:45.547490+00:00",
+    "https://www.cabinetclgi.com::<button aria-disabled=\"false\" aria-label=\"ENVOYER\" data-testid=\"buttonElement\" class=\"uDW_Qe wixui-b": "2026-04-03T22:56:04.108568+00:00",
+    "https://www.cabinetclgi.com::<button data-hook=\"consent-banner-settings-button\" class=\"Wm1W5U bqbmwD Pg7AcP KiIMJv Mm8Lm6\">Param\u00e8": "2026-04-03T22:56:05.162400+00:00",
+    "https://www.cabinetclgi.com/qui-sommes-nous::<button aria-disabled=\"false\" aria-label=\"ENVOYER\" data-testid=\"buttonElement\" class=\"uDW_Qe wixui-b": "2026-04-03T22:56:23.657464+00:00",
+    "https://www.cabinetclgi.com/qui-sommes-nous::<button data-hook=\"consent-banner-settings-button\" class=\"Wm1W5U bqbmwD Pg7AcP KiIMJv Mm8Lm6\">Param\u00e8": "2026-04-03T22:56:24.727791+00:00",
+    "https://www.cabinetclgi.com/espace-client::<button aria-disabled=\"false\" aria-label=\"ENVOYER\" data-testid=\"buttonElement\" class=\"uDW_Qe wixui-b": "2026-04-03T22:56:43.358086+00:00",
+    "https://www.cabinetclgi.com/espace-client::<button data-hook=\"consent-banner-settings-button\" class=\"Wm1W5U bqbmwD Pg7AcP KiIMJv Mm8Lm6\">Param\u00e8": "2026-04-03T22:56:44.410261+00:00",
+    "https://www.cabinetclgi.com/devis::<button aria-disabled=\"false\" aria-label=\"Envoyer\" data-testid=\"buttonElement\" class=\"uDW_Qe wixui-b": "2026-04-03T22:57:02.771892+00:00",
+    "https://www.cabinetclgi.com/devis::<button aria-disabled=\"false\" aria-label=\"ENVOYER\" data-testid=\"buttonElement\" class=\"uDW_Qe wixui-b": "2026-04-03T22:57:03.804352+00:00",
+    "https://www.cabinetclgi.com/devis::<button data-hook=\"consent-banner-settings-button\" class=\"Wm1W5U bqbmwD Pg7AcP KiIMJv Mm8Lm6\">Param\u00e8": "2026-04-03T22:57:04.859025+00:00"
   }
 }
