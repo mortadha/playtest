@@ -59,74 +59,25 @@
 
         <!-- Config + Logs -->
         <div class="grid-2" style="margin-top: 24px;">
-          <!-- Configuration -->
+          <!-- Quick Test -->
           <div class="panel">
-            <h3 class="panel-title">Configuration</h3>
+            <h3 class="panel-title">Test Rapide</h3>
             
             <div class="input-group">
               <label>URL du Site à Tester</label>
               <input type="url" [(ngModel)]="targetUrl" placeholder="https://votre-site.com" [disabled]="isRunning">
             </div>
 
-            <!-- Form Fill Options -->
-            <div class="input-group" style="margin-top: 16px;">
-              <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
-                <input type="checkbox" [(ngModel)]="fillForms" [disabled]="isRunning" style="width: 18px; height: 18px;">
-                Remplir automatiquement les formulaires
-              </label>
-            </div>
-
-            @if (fillForms) {
-              <div style="background: #F4F4F5; padding: 16px; margin-top: 12px; border: 1px solid #E4E4E7;">
-                <div style="font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: #52525B; margin-bottom: 12px;">
-                  Données des Formulaires
-                </div>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
-                  <div class="input-group" style="margin-bottom: 8px;">
-                    <label style="font-size: 10px;">Email</label>
-                    <input type="email" [(ngModel)]="formData.email" [disabled]="isRunning" style="padding: 8px; font-size: 12px;">
-                  </div>
-                  <div class="input-group" style="margin-bottom: 8px;">
-                    <label style="font-size: 10px;">Mot de passe</label>
-                    <input type="text" [(ngModel)]="formData.password" [disabled]="isRunning" style="padding: 8px; font-size: 12px;">
-                  </div>
-                  <div class="input-group" style="margin-bottom: 8px;">
-                    <label style="font-size: 10px;">Nom</label>
-                    <input type="text" [(ngModel)]="formData.name" [disabled]="isRunning" style="padding: 8px; font-size: 12px;">
-                  </div>
-                  <div class="input-group" style="margin-bottom: 8px;">
-                    <label style="font-size: 10px;">Téléphone</label>
-                    <input type="text" [(ngModel)]="formData.phone" [disabled]="isRunning" style="padding: 8px; font-size: 12px;">
-                  </div>
-                  <div class="input-group" style="margin-bottom: 8px;">
-                    <label style="font-size: 10px;">Adresse</label>
-                    <input type="text" [(ngModel)]="formData.address" [disabled]="isRunning" style="padding: 8px; font-size: 12px;">
-                  </div>
-                  <div class="input-group" style="margin-bottom: 8px;">
-                    <label style="font-size: 10px;">Ville</label>
-                    <input type="text" [(ngModel)]="formData.city" [disabled]="isRunning" style="padding: 8px; font-size: 12px;">
-                  </div>
-                  <div class="input-group" style="margin-bottom: 8px; grid-column: span 2;">
-                    <label style="font-size: 10px;">Message / Texte long</label>
-                    <textarea [(ngModel)]="formData.message" [disabled]="isRunning" rows="2" style="padding: 8px; font-size: 12px; width: 100%; resize: none;"></textarea>
-                  </div>
-                </div>
-              </div>
-            }
-
-            <div class="flex-gap" style="margin-top: 24px;">
+            <div class="flex-gap" style="margin-top: 16px;">
               @if (!isRunning) {
                 <button class="btn btn-primary" (click)="startTest()" [disabled]="!targetUrl" style="flex: 1;">
-                  ▶️ Démarrer le Test
+                  ▶️ Démarrer
                 </button>
               } @else {
                 <button class="btn btn-danger" (click)="stopTest()" style="flex: 1;">
                   ⏹️ Arrêter
                 </button>
               }
-              <button class="btn btn-secondary" (click)="loadSessions()">
-                🔄
-              </button>
             </div>
           </div>
 
@@ -146,6 +97,31 @@
             </div>
           </div>
         </div>
+
+        <!-- Saved Scenarios -->
+        @if (scenarios.length > 0) {
+          <div class="panel">
+            <h3 class="panel-title">Lancer un Scénario Sauvegardé</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px;">
+              @for (scenario of scenarios; track scenario.id) {
+                <div style="background: #fff; border: 1px solid #E4E4E7; padding: 16px;">
+                  <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <h4 style="font-family: 'Chivo', sans-serif; font-weight: 700; margin: 0;">{{ scenario.name }}</h4>
+                    <button class="btn btn-primary btn-sm" (click)="startTest(scenario.id)" [disabled]="isRunning">
+                      ▶️
+                    </button>
+                  </div>
+                  <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #71717A; margin-top: 8px;">
+                    {{ scenario.targetUrl }}
+                  </div>
+                  <div style="font-size: 12px; color: #52525B; margin-top: 4px;">
+                    {{ scenario.steps.length }} étapes
+                  </div>
+                </div>
+              }
+            </div>
+          </div>
+        }
       </div>
     }
 
@@ -175,32 +151,108 @@
             Ajouter une Étape
           </h4>
           
-          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-            <select [(ngModel)]="newStepAction" style="width: 120px;">
-              <option value="click">Click</option>
-              <option value="fill">Fill</option>
-              <option value="select">Select</option>
-              <option value="check">Check</option>
-              <option value="wait">Wait</option>
-              <option value="navigate">Navigate</option>
-              <option value="screenshot">Screenshot</option>
-            </select>
-            <input type="text" [(ngModel)]="newStepSelector" placeholder="Selector CSS" style="flex: 1; min-width: 200px;">
-            <input type="text" [(ngModel)]="newStepValue" placeholder="Valeur (optionnel)" style="width: 150px;">
-            <input type="text" [(ngModel)]="newStepDescription" placeholder="Description" style="width: 200px;">
-            <button class="btn btn-secondary btn-sm" (click)="addStepToScenario()">+ Ajouter</button>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: flex-end;">
+            <div style="display: flex; flex-direction: column; gap: 4px;">
+              <label style="font-size: 10px; color: #71717A;">Action</label>
+              <select [(ngModel)]="newStepAction" style="width: 140px; padding: 10px;">
+                <option value="click">🖱️ Click</option>
+                <option value="fill">✏️ Fill (Remplir)</option>
+                <option value="select">📋 Select</option>
+                <option value="check">☑️ Check</option>
+                <option value="wait">⏱️ Wait</option>
+                <option value="navigate">🧭 Navigate</option>
+                <option value="screenshot">📸 Screenshot</option>
+              </select>
+            </div>
+            
+            @if (newStepAction !== 'wait' && newStepAction !== 'screenshot') {
+              <div style="display: flex; flex-direction: column; gap: 4px; flex: 1; min-width: 200px;">
+                <label style="font-size: 10px; color: #71717A;">
+                  {{ newStepAction === 'navigate' ? 'URL' : 'Sélecteur CSS' }}
+                </label>
+                <input type="text" [(ngModel)]="newStepSelector" 
+                  [placeholder]="newStepAction === 'navigate' ? 'https://...' : '#email, .btn-submit, input[name=email]'"
+                  style="padding: 10px;">
+              </div>
+            }
+            
+            @if (newStepAction === 'fill' || newStepAction === 'select') {
+              <div style="display: flex; flex-direction: column; gap: 4px; width: 200px;">
+                <label style="font-size: 10px; color: #71717A;">
+                  {{ newStepAction === 'fill' ? 'Valeur à saisir' : 'Option à sélectionner' }}
+                </label>
+                <input type="text" [(ngModel)]="newStepValue" 
+                  [placeholder]="newStepAction === 'fill' ? 'test@email.com' : 'option_value'"
+                  style="padding: 10px;">
+              </div>
+            }
+            
+            @if (newStepAction === 'wait') {
+              <div style="display: flex; flex-direction: column; gap: 4px; width: 150px;">
+                <label style="font-size: 10px; color: #71717A;">Durée (ms)</label>
+                <input type="number" [(ngModel)]="newStepValue" placeholder="1000" style="padding: 10px;">
+              </div>
+            }
+            
+            <div style="display: flex; flex-direction: column; gap: 4px; width: 200px;">
+              <label style="font-size: 10px; color: #71717A;">Description (optionnel)</label>
+              <input type="text" [(ngModel)]="newStepDescription" placeholder="Ex: Remplir email" style="padding: 10px;">
+            </div>
+            
+            <button class="btn btn-secondary" (click)="addStepToScenario()" style="padding: 10px 16px;">
+              + Ajouter
+            </button>
+          </div>
+          
+          <!-- Help text -->
+          <div style="margin-top: 12px; padding: 12px; background: #F4F4F5; border-left: 3px solid #0047FF; font-size: 12px; color: #52525B;">
+            @switch (newStepAction) {
+              @case ('click') {
+                <strong>Click:</strong> Cliquer sur un élément. Ex: <code>button.submit</code>, <code>#login-btn</code>
+              }
+              @case ('fill') {
+                <strong>Fill:</strong> Remplir un champ texte. Ex: <code>input[name="email"]</code> → <code>test&#64;email.com</code>
+              }
+              @case ('select') {
+                <strong>Select:</strong> Sélectionner une option dans un dropdown. Ex: <code>select#country</code> → <code>FR</code>
+              }
+              @case ('check') {
+                <strong>Check:</strong> Cocher une checkbox. Ex: <code>input[type="checkbox"]#terms</code>
+              }
+              @case ('wait') {
+                <strong>Wait:</strong> Attendre X millisecondes avant la prochaine étape.
+              }
+              @case ('navigate') {
+                <strong>Navigate:</strong> Aller vers une URL. Ex: <code>https://site.com/page</code>
+              }
+              @case ('screenshot') {
+                <strong>Screenshot:</strong> Capturer une image de l'écran actuel.
+              }
+            }
           </div>
 
           @if (newScenarioSteps.length > 0) {
             <div class="step-list">
+              <div style="font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: #52525B; margin: 16px 0 8px;">
+                Étapes du scénario ({{ newScenarioSteps.length }})
+              </div>
               @for (step of newScenarioSteps; track $index; let i = $index) {
-                <div class="step-item">
-                  <span class="step-action">{{ step.action }}</span>
-                  <span>{{ step.selector || step.description }}</span>
-                  @if (step.value) {
-                    <span style="color: #00C566;">= {{ step.value }}</span>
+                <div class="step-item" style="display: flex; align-items: center; gap: 12px; padding: 12px; background: #fff; border: 1px solid #E4E4E7; margin-bottom: 4px;">
+                  <span style="font-size: 12px; color: #A1A1AA; font-weight: 600;">#{{ i + 1 }}</span>
+                  <span class="step-action" style="background: #0047FF; color: #fff; padding: 4px 8px; font-size: 11px; font-weight: 700;">
+                    {{ step.action.toUpperCase() }}
+                  </span>
+                  @if (step.selector) {
+                    <code style="background: #F4F4F5; padding: 4px 8px; font-size: 12px; color: #0A0A0A;">{{ step.selector }}</code>
                   }
-                  <span class="step-remove" (click)="removeStepFromScenario(i)">✕</span>
+                  @if (step.value) {
+                    <span style="color: #00C566; font-weight: 600;">→</span>
+                    <code style="background: #ECFDF5; padding: 4px 8px; font-size: 12px; color: #059669; border: 1px solid #A7F3D0;">{{ step.value }}</code>
+                  }
+                  @if (step.description) {
+                    <span style="color: #71717A; font-size: 12px; font-style: italic;">{{ step.description }}</span>
+                  }
+                  <span class="step-remove" (click)="removeStepFromScenario(i)" style="margin-left: auto; cursor: pointer; color: #FF3B30; font-size: 18px; padding: 4px;">✕</span>
                 </div>
               }
             </div>
