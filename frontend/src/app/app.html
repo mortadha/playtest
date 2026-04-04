@@ -1,0 +1,329 @@
+<div class="app-container">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <h1>QA CRAWLER</h1>
+      <p>Bot de Test Automatisé</p>
+    </div>
+    
+    <nav class="sidebar-nav">
+      <div class="nav-item" [class.active]="activeTab === 'dashboard'" (click)="activeTab = 'dashboard'">
+        ⚙️ Dashboard
+      </div>
+      <div class="nav-item" [class.active]="activeTab === 'scenarios'" (click)="activeTab = 'scenarios'">
+        📋 Scénarios ({{ scenarios.length }})
+      </div>
+      <div class="nav-item" [class.active]="activeTab === 'steps'" (click)="activeTab = 'steps'">
+        📸 Étapes ({{ steps.length }})
+      </div>
+      <div class="nav-item" [class.active]="activeTab === 'bugs'" (click)="activeTab = 'bugs'">
+        🐛 Bugs ({{ bugs.length }})
+      </div>
+      <div class="nav-item" [class.active]="activeTab === 'history'" (click)="activeTab = 'history'">
+        📜 Historique
+      </div>
+    </nav>
+    
+    <div class="status-panel">
+      <div class="status-label">Status</div>
+      <span class="status-badge" [class.running]="isRunning" [class.pending]="!isRunning">
+        {{ isRunning ? '● RUNNING' : '○ PENDING' }}
+      </span>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <!-- Dashboard -->
+    @if (activeTab === 'dashboard') {
+      <div>
+        <!-- Stats -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-label">Sessions</div>
+            <div class="stat-value brand">{{ sessions.length }}</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Scénarios</div>
+            <div class="stat-value">{{ scenarios.length }}</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Étapes</div>
+            <div class="stat-value">{{ steps.length }}</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Bugs</div>
+            <div class="stat-value error">{{ bugs.length }}</div>
+          </div>
+        </div>
+
+        <!-- Config + Logs -->
+        <div class="grid-2" style="margin-top: 24px;">
+          <!-- Configuration -->
+          <div class="panel">
+            <h3 class="panel-title">Configuration</h3>
+            
+            <div class="input-group">
+              <label>URL du Site à Tester</label>
+              <input type="url" [(ngModel)]="targetUrl" placeholder="https://votre-site.com" [disabled]="isRunning">
+            </div>
+
+            <div class="flex-gap" style="margin-top: 24px;">
+              @if (!isRunning) {
+                <button class="btn btn-primary" (click)="startTest()" [disabled]="!targetUrl" style="flex: 1;">
+                  ▶️ Démarrer le Test
+                </button>
+              } @else {
+                <button class="btn btn-danger" (click)="stopTest()" style="flex: 1;">
+                  ⏹️ Arrêter
+                </button>
+              }
+              <button class="btn btn-secondary" (click)="loadSessions()">
+                🔄
+              </button>
+            </div>
+          </div>
+
+          <!-- Activity Log -->
+          <div class="panel">
+            <h3 class="panel-title">Journal d'Activité</h3>
+            <div class="activity-log">
+              @if (logs.length === 0) {
+                <div style="color: #71717A;">En attente de démarrage...</div>
+              }
+              @for (log of logs; track log.time) {
+                <div class="log-entry">
+                  <span class="log-time">[{{ log.time }}]</span>
+                  <span class="log-message" [class]="log.type">{{ log.message }}</span>
+                </div>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    }
+
+    <!-- Scenarios -->
+    @if (activeTab === 'scenarios') {
+      <div>
+        <div class="page-header">
+          <h2>SCÉNARIOS DE TEST</h2>
+        </div>
+
+        <!-- Create Scenario -->
+        <div class="panel">
+          <h3 class="panel-title">Créer un Scénario</h3>
+          
+          <div class="grid-2" style="gap: 16px; border: none;">
+            <div class="input-group" style="border: none;">
+              <label>Nom du Scénario</label>
+              <input type="text" [(ngModel)]="newScenarioName" placeholder="Ex: Test de connexion">
+            </div>
+            <div class="input-group" style="border: none;">
+              <label>URL de départ</label>
+              <input type="url" [(ngModel)]="newScenarioUrl" placeholder="https://site.com/login">
+            </div>
+          </div>
+
+          <h4 style="margin: 24px 0 12px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: #52525B;">
+            Ajouter une Étape
+          </h4>
+          
+          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+            <select [(ngModel)]="newStepAction" style="width: 120px;">
+              <option value="click">Click</option>
+              <option value="fill">Fill</option>
+              <option value="select">Select</option>
+              <option value="check">Check</option>
+              <option value="wait">Wait</option>
+              <option value="navigate">Navigate</option>
+              <option value="screenshot">Screenshot</option>
+            </select>
+            <input type="text" [(ngModel)]="newStepSelector" placeholder="Selector CSS" style="flex: 1; min-width: 200px;">
+            <input type="text" [(ngModel)]="newStepValue" placeholder="Valeur (optionnel)" style="width: 150px;">
+            <input type="text" [(ngModel)]="newStepDescription" placeholder="Description" style="width: 200px;">
+            <button class="btn btn-secondary btn-sm" (click)="addStepToScenario()">+ Ajouter</button>
+          </div>
+
+          @if (newScenarioSteps.length > 0) {
+            <div class="step-list">
+              @for (step of newScenarioSteps; track $index; let i = $index) {
+                <div class="step-item">
+                  <span class="step-action">{{ step.action }}</span>
+                  <span>{{ step.selector || step.description }}</span>
+                  @if (step.value) {
+                    <span style="color: #00C566;">= {{ step.value }}</span>
+                  }
+                  <span class="step-remove" (click)="removeStepFromScenario(i)">✕</span>
+                </div>
+              }
+            </div>
+          }
+
+          <button class="btn btn-primary" (click)="saveScenario()" style="margin-top: 16px;">
+            💾 Sauvegarder le Scénario
+          </button>
+        </div>
+
+        <!-- Saved Scenarios -->
+        <div class="panel">
+          <h3 class="panel-title">Scénarios Sauvegardés</h3>
+          
+          @if (scenarios.length === 0) {
+            <div class="empty-state">
+              <div class="empty-icon">📋</div>
+              <div class="empty-text">Aucun scénario créé</div>
+            </div>
+          } @else {
+            @for (scenario of scenarios; track scenario.id) {
+              <div class="scenario-card">
+                <div class="scenario-header">
+                  <h4>{{ scenario.name }}</h4>
+                  <div class="flex-gap">
+                    <button class="btn btn-primary btn-sm" (click)="startTest(scenario.id)" [disabled]="isRunning">
+                      ▶️ Exécuter
+                    </button>
+                    <button class="btn btn-secondary btn-sm" (click)="deleteScenario(scenario.id)">
+                      🗑️
+                    </button>
+                  </div>
+                </div>
+                <div class="scenario-url">{{ scenario.targetUrl }}</div>
+                <div class="scenario-steps-count">{{ scenario.steps.length }} étapes</div>
+              </div>
+            }
+          }
+        </div>
+      </div>
+    }
+
+    <!-- Steps -->
+    @if (activeTab === 'steps') {
+      <div>
+        <div class="page-header">
+          <h2>ÉTAPES DU TEST</h2>
+          <span class="status-badge" style="background: #0047FF; color: #fff;">
+            📸 {{ steps.length }} étapes
+          </span>
+        </div>
+
+        @if (steps.length === 0) {
+          <div class="empty-state">
+            <div class="empty-icon">📸</div>
+            <div class="empty-text">Aucune étape capturée. Lancez un test pour voir les captures d'écran.</div>
+          </div>
+        } @else {
+          <div class="steps-grid">
+            @for (step of steps; track step.id; let i = $index) {
+              <div class="step-card">
+                <div class="step-header">
+                  <span>{{ getStepIcon(step.type) }}</span>
+                  <span>{{ getStepLabel(step.type) }}</span>
+                  <span class="step-number">#{{ i + 1 }}</span>
+                </div>
+                @if (step.screenshot) {
+                  <img [src]="step.screenshot" class="step-screenshot" [alt]="step.description">
+                }
+                <div class="step-info">
+                  <div class="step-description">{{ step.description }}</div>
+                  <div class="step-url">{{ step.url }}</div>
+                  <div class="step-time">{{ step.timestamp | date:'HH:mm:ss' }}</div>
+                </div>
+              </div>
+            }
+          </div>
+        }
+      </div>
+    }
+
+    <!-- Bugs -->
+    @if (activeTab === 'bugs') {
+      <div>
+        <div class="page-header">
+          <h2>BUGS DÉTECTÉS</h2>
+          <span class="status-badge error">🐛 {{ bugs.length }} bugs</span>
+        </div>
+
+        @if (bugs.length === 0) {
+          <div class="empty-state">
+            <div class="empty-icon">✅</div>
+            <div class="empty-text">Aucun bug détecté</div>
+          </div>
+        } @else {
+          @for (bug of bugs; track bug.id) {
+            <div class="panel" style="margin-top: 0; margin-bottom: 8px; border-left: 4px solid #FF3B30;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <span class="status-badge error">{{ bug.type }}</span>
+                <span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #71717A;">
+                  {{ bug.timestamp | date:'dd/MM/yyyy HH:mm:ss' }}
+                </span>
+              </div>
+              <p style="font-family: 'JetBrains Mono', monospace; font-size: 13px; margin: 8px 0; word-break: break-all;">
+                {{ bug.message }}
+              </p>
+              <p style="font-size: 11px; color: #71717A; margin: 0;">{{ bug.url }}</p>
+            </div>
+          }
+        }
+      </div>
+    }
+
+    <!-- History -->
+    @if (activeTab === 'history') {
+      <div>
+        <div class="page-header">
+          <h2>HISTORIQUE DES TESTS</h2>
+        </div>
+
+        @if (sessions.length === 0) {
+          <div class="empty-state">
+            <div class="empty-icon">📜</div>
+            <div class="empty-text">Aucune session enregistrée</div>
+          </div>
+        } @else {
+          <table class="sessions-table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>URL</th>
+                <th>Status</th>
+                <th>Étapes</th>
+                <th>Bugs</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (session of sessions; track session.id) {
+                <tr>
+                  <td>{{ session.startedAt | date:'dd/MM/yyyy HH:mm' }}</td>
+                  <td style="max-width: 250px; overflow: hidden; text-overflow: ellipsis;">{{ session.targetUrl }}</td>
+                  <td>
+                    <span class="status-badge" [class]="session.status">
+                      {{ session.status.toUpperCase() }}
+                    </span>
+                  </td>
+                  <td>{{ session.steps?.length || 0 }}</td>
+                  <td [style.color]="session.bugs?.length ? '#FF3B30' : ''">
+                    {{ session.bugs?.length || 0 }}
+                  </td>
+                  <td>
+                    <div class="flex-gap">
+                      @if (session.steps?.length) {
+                        <button class="btn btn-primary btn-sm" (click)="viewSession(session)">
+                          📸
+                        </button>
+                      }
+                      <button class="btn btn-secondary btn-sm" (click)="deleteSession(session.id)">
+                        🗑️
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        }
+      </div>
+    }
+  </main>
+</div>

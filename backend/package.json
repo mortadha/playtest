@@ -1,0 +1,17 @@
+{
+  "name": "qa-crawler-backend",
+  "version": "1.0.0",
+  "description": "QA Crawler Bot - Node.js Backend",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "playwright": "^1.59.1",
+    "uuid": "^9.0.0",
+    "ws": "^8.14.2"
+  }
+}

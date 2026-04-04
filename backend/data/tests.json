@@ -1,0 +1,30 @@
+{
+  "sessions": [
+    {
+      "id": "565bdad0-592d-437d-b0be-f3acb8410b73",
+      "targetUrl": "https://httpbin.org/forms/post",
+      "status": "completed",
+      "startedAt": "2026-04-04T20:52:19.699Z",
+      "endedAt": "2026-04-04T20:52:21.519Z",
+      "steps": [
+        {
+          "id": "7333c1d0-98dc-4455-bc6a-f9183c106d70",
+          "type": "visit",
+          "description": "Visited: https://httpbin.org/forms/post",
+          "url": "https://httpbin.org/forms/post",
+          "screenshot": "/api/screenshots/f8048035-107b-4f5e-9b9d-ff9e61f465aa.png",
+          "timestamp": "2026-04-04T20:52:20.334Z"
+        },
+        {
+          "id": "458e0e16-62fe-4a6a-8aab-9e653da3e0b3",
+          "type": "click",
+          "description": "Clicked button: Submit order",
+          "url": "https://httpbin.org/post",
+          "screenshot": "/api/screenshots/99100ca3-fd1a-4e0c-8c99-12af5eb771f3.png",
+          "timestamp": "2026-04-04T20:52:21.508Z"
+        }
+      ],
+      "bugs": []
+    }
+  ]
+}
