@@ -1,1 +1,18 @@
-{"scenarios":[]}
+{
+  "scenarios": [
+    {
+      "id": "64034742-586f-4584-9082-1f0acf730e67",
+      "name": "test",
+      "targetUrl": "https://www.cabinetclgi.com/",
+      "steps": [
+        {
+          "action": "select",
+          "selector": ".JS76Uv",
+          "value": "",
+          "description": ""
+        }
+      ],
+      "createdAt": "2026-04-04T20:59:01.972Z"
+    }
+  ]
+}

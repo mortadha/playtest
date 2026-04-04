@@ -68,6 +68,52 @@
               <input type="url" [(ngModel)]="targetUrl" placeholder="https://votre-site.com" [disabled]="isRunning">
             </div>
 
+            <!-- Form Fill Options -->
+            <div class="input-group" style="margin-top: 16px;">
+              <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                <input type="checkbox" [(ngModel)]="fillForms" [disabled]="isRunning" style="width: 18px; height: 18px;">
+                Remplir automatiquement les formulaires
+              </label>
+            </div>
+
+            @if (fillForms) {
+              <div style="background: #F4F4F5; padding: 16px; margin-top: 12px; border: 1px solid #E4E4E7;">
+                <div style="font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: #52525B; margin-bottom: 12px;">
+                  Données des Formulaires
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                  <div class="input-group" style="margin-bottom: 8px;">
+                    <label style="font-size: 10px;">Email</label>
+                    <input type="email" [(ngModel)]="formData.email" [disabled]="isRunning" style="padding: 8px; font-size: 12px;">
+                  </div>
+                  <div class="input-group" style="margin-bottom: 8px;">
+                    <label style="font-size: 10px;">Mot de passe</label>
+                    <input type="text" [(ngModel)]="formData.password" [disabled]="isRunning" style="padding: 8px; font-size: 12px;">
+                  </div>
+                  <div class="input-group" style="margin-bottom: 8px;">
+                    <label style="font-size: 10px;">Nom</label>
+                    <input type="text" [(ngModel)]="formData.name" [disabled]="isRunning" style="padding: 8px; font-size: 12px;">
+                  </div>
+                  <div class="input-group" style="margin-bottom: 8px;">
+                    <label style="font-size: 10px;">Téléphone</label>
+                    <input type="text" [(ngModel)]="formData.phone" [disabled]="isRunning" style="padding: 8px; font-size: 12px;">
+                  </div>
+                  <div class="input-group" style="margin-bottom: 8px;">
+                    <label style="font-size: 10px;">Adresse</label>
+                    <input type="text" [(ngModel)]="formData.address" [disabled]="isRunning" style="padding: 8px; font-size: 12px;">
+                  </div>
+                  <div class="input-group" style="margin-bottom: 8px;">
+                    <label style="font-size: 10px;">Ville</label>
+                    <input type="text" [(ngModel)]="formData.city" [disabled]="isRunning" style="padding: 8px; font-size: 12px;">
+                  </div>
+                  <div class="input-group" style="margin-bottom: 8px; grid-column: span 2;">
+                    <label style="font-size: 10px;">Message / Texte long</label>
+                    <textarea [(ngModel)]="formData.message" [disabled]="isRunning" rows="2" style="padding: 8px; font-size: 12px; width: 100%; resize: none;"></textarea>
+                  </div>
+                </div>
+              </div>
+            }
+
             <div class="flex-gap" style="margin-top: 24px;">
               @if (!isRunning) {
                 <button class="btn btn-primary" (click)="startTest()" [disabled]="!targetUrl" style="flex: 1;">

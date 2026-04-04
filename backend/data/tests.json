@@ -1,6 +1,208 @@
 {
   "sessions": [
     {
+      "id": "0d1b6cd2-2a11-47ac-b771-f1aa92eee69e",
+      "targetUrl": "https://httpbin.org/forms/post",
+      "status": "completed",
+      "startedAt": "2026-04-04T21:04:37.921Z",
+      "endedAt": "2026-04-04T21:04:39.817Z",
+      "steps": [
+        {
+          "id": "7cf68c5d-fce2-4b67-aad5-949044459f1a",
+          "type": "visit",
+          "description": "Visited: https://httpbin.org/forms/post",
+          "url": "https://httpbin.org/forms/post",
+          "screenshot": "/api/screenshots/4a619d6c-d1b2-4ca7-a606-87193b8c40e9.png",
+          "timestamp": "2026-04-04T21:04:38.457Z"
+        },
+        {
+          "id": "cd6673c7-554b-41c2-8a54-ca6bd01343bc",
+          "type": "click",
+          "description": "Clicked button: Submit order",
+          "url": "https://httpbin.org/post",
+          "screenshot": "/api/screenshots/99693142-4604-4fd1-ac7d-1de970aba03b.png",
+          "timestamp": "2026-04-04T21:04:39.638Z"
+        }
+      ],
+      "bugs": [],
+      "formData": {
+        "email": "mon-email@test.fr",
+        "password": "TestPass123!",
+        "name": "Jean Dupont",
+        "phone": "0612345678",
+        "address": "123 Rue de Test",
+        "city": "Paris",
+        "search": "test query",
+        "message": "Ceci est un message de test automatique.",
+        "custom": ""
+      }
+    },
+    {
+      "id": "85577204-4399-40b9-a0ac-e807a0806f32",
+      "targetUrl": "https://www.cabinetclgi.com/",
+      "status": "completed",
+      "startedAt": "2026-04-04T21:00:18.304Z",
+      "endedAt": "2026-04-04T21:00:28.092Z",
+      "steps": [
+        {
+          "id": "cade20d6-7bf1-44ac-aa80-bbc5632c274a",
+          "type": "visit",
+          "description": "Visited: https://www.cabinetclgi.com/",
+          "url": "https://www.cabinetclgi.com/",
+          "screenshot": "/api/screenshots/27938766-4b47-4c3a-b61d-f727216e7e6d.png",
+          "timestamp": "2026-04-04T21:00:19.971Z"
+        },
+        {
+          "id": "13fe8ce8-ab9f-422c-8e25-b96811f6fa1f",
+          "type": "click",
+          "description": "Clicked button: ",
+          "url": "https://www.cabinetclgi.com/",
+          "screenshot": "/api/screenshots/1b562e35-bcf9-4f53-a610-bcbb3f2a5cbf.png",
+          "timestamp": "2026-04-04T21:00:26.401Z"
+        },
+        {
+          "id": "c9c93879-3420-4dc6-b1ea-0129fbfd68cf",
+          "type": "click",
+          "description": "Clicked button: ENVOYER",
+          "url": "https://www.cabinetclgi.com/",
+          "screenshot": "/api/screenshots/ebd23c17-de66-4293-b2f3-221545939c3a.png",
+          "timestamp": "2026-04-04T21:00:27.732Z"
+        },
+        {
+          "id": "6464f078-f5f1-4cf9-a9bf-6cab0be25bfc",
+          "type": "fill_form",
+          "description": "Filled form fields",
+          "url": "https://www.cabinetclgi.com/",
+          "screenshot": "/api/screenshots/010e907c-ab03-4667-8981-e3ecabd9f100.png",
+          "timestamp": "2026-04-04T21:00:28.077Z"
+        }
+      ],
+      "bugs": []
+    },
+    {
+      "id": "17541ebc-b10d-4c1a-a615-bec0e31d9505",
+      "targetUrl": "https://www.cabinetclgi.com/",
+      "status": "completed",
+      "startedAt": "2026-04-04T21:00:03.802Z",
+      "endedAt": "2026-04-04T21:00:13.533Z",
+      "steps": [
+        {
+          "id": "dacb7abe-97b9-4dee-ac70-b4ddcca025f9",
+          "type": "visit",
+          "description": "Visited: https://www.cabinetclgi.com/",
+          "url": "https://www.cabinetclgi.com/",
+          "screenshot": "/api/screenshots/c4f36c68-7389-4f2a-b952-4f4c12a476c3.png",
+          "timestamp": "2026-04-04T21:00:05.364Z"
+        },
+        {
+          "id": "fb732a1a-3e16-4b02-82a4-0702b006217a",
+          "type": "click",
+          "description": "Clicked button: ",
+          "url": "https://www.cabinetclgi.com/",
+          "screenshot": "/api/screenshots/b7d8ff2f-3edc-4867-98ba-7658c092f5f5.png",
+          "timestamp": "2026-04-04T21:00:11.800Z"
+        },
+        {
+          "id": "f3398597-d538-4201-94a4-d5cf9bc2e076",
+          "type": "click",
+          "description": "Clicked button: ENVOYER",
+          "url": "https://www.cabinetclgi.com/",
+          "screenshot": "/api/screenshots/ca831878-dabf-4262-9112-a4e15c024ec1.png",
+          "timestamp": "2026-04-04T21:00:13.140Z"
+        },
+        {
+          "id": "55c5b4f1-5da2-4285-b195-08436b7e9839",
+          "type": "fill_form",
+          "description": "Filled form fields",
+          "url": "https://www.cabinetclgi.com/",
+          "screenshot": "/api/screenshots/6a4216a8-01f3-4d0e-9841-1fca1ddca8fd.png",
+          "timestamp": "2026-04-04T21:00:13.480Z"
+        }
+      ],
+      "bugs": []
+    },
+    {
+      "id": "b051bb24-77dd-432f-8dfb-ee6c19556427",
+      "scenarioId": "64034742-586f-4584-9082-1f0acf730e67",
+      "targetUrl": "https://www.cabinetclgi.com/",
+      "status": "completed",
+      "startedAt": "2026-04-04T20:59:26.435Z",
+      "endedAt": "2026-04-04T20:59:28.077Z",
+      "steps": [
+        {
+          "id": "2fd19efe-bc8b-4e93-afe7-70f9b3d4e124",
+          "type": "visit",
+          "description": "Visited: https://www.cabinetclgi.com/",
+          "url": "https://www.cabinetclgi.com/",
+          "screenshot": "/api/screenshots/e8caf3eb-4669-406f-849e-cb9a4712a75d.png",
+          "timestamp": "2026-04-04T20:59:27.967Z"
+        }
+      ],
+      "bugs": [
+        {
+          "id": "79fcad65-c329-4138-8f22-de7f5fb0181a",
+          "type": "step_error",
+          "message": "page.selectOption: Error: Element is not a <select> element\nCall log:\n  - waiting for locator('.JS76Uv')\n    - locator resolved to 5 elements. Proceeding with the first one: <p class=\"JS76Uv\" id=\"comp-ij49n5sk0label\">ACCUEIL</p>\n  - attempting select option action\n    - waiting for element to be visible and enabled\n",
+          "url": "https://www.cabinetclgi.com/",
+          "timestamp": "2026-04-04T20:59:28.077Z"
+        }
+      ]
+    },
+    {
+      "id": "e8944a09-1683-4df3-b079-f9689c0a82fe",
+      "scenarioId": "64034742-586f-4584-9082-1f0acf730e67",
+      "targetUrl": "https://www.cabinetclgi.com/",
+      "status": "completed",
+      "startedAt": "2026-04-04T20:59:14.010Z",
+      "endedAt": "2026-04-04T20:59:15.764Z",
+      "steps": [
+        {
+          "id": "53fe6c7f-e3f0-47d7-9d2d-807c385e4233",
+          "type": "visit",
+          "description": "Visited: https://www.cabinetclgi.com/",
+          "url": "https://www.cabinetclgi.com/",
+          "screenshot": "/api/screenshots/90d3f01e-9b7b-4838-b36a-771fcbb79aea.png",
+          "timestamp": "2026-04-04T20:59:15.670Z"
+        }
+      ],
+      "bugs": [
+        {
+          "id": "5e80c63e-bfb4-417e-836a-8a22180252ca",
+          "type": "step_error",
+          "message": "page.selectOption: Error: Element is not a <select> element\nCall log:\n  - waiting for locator('.JS76Uv')\n    - locator resolved to 5 elements. Proceeding with the first one: <p class=\"JS76Uv\" id=\"comp-ij49n5sk0label\">ACCUEIL</p>\n  - attempting select option action\n    - waiting for element to be visible and enabled\n",
+          "url": "https://www.cabinetclgi.com/",
+          "timestamp": "2026-04-04T20:59:15.764Z"
+        }
+      ]
+    },
+    {
+      "id": "b1e6df95-e793-40f8-8416-32d8b57f4700",
+      "scenarioId": "64034742-586f-4584-9082-1f0acf730e67",
+      "targetUrl": "https://www.cabinetclgi.com/",
+      "status": "completed",
+      "startedAt": "2026-04-04T20:59:11.406Z",
+      "endedAt": "2026-04-04T20:59:13.061Z",
+      "steps": [
+        {
+          "id": "f708e560-13e4-49a3-9ffa-4fcde130a58e",
+          "type": "visit",
+          "description": "Visited: https://www.cabinetclgi.com/",
+          "url": "https://www.cabinetclgi.com/",
+          "screenshot": "/api/screenshots/9aca8a61-8724-49c2-b70c-4b2130ce1fb6.png",
+          "timestamp": "2026-04-04T20:59:12.965Z"
+        }
+      ],
+      "bugs": [
+        {
+          "id": "75218ba0-3745-497e-884d-06eb085c1e11",
+          "type": "step_error",
+          "message": "page.selectOption: Error: Element is not a <select> element\nCall log:\n  - waiting for locator('.JS76Uv')\n    - locator resolved to 5 elements. Proceeding with the first one: <p class=\"JS76Uv\" id=\"comp-ij49n5sk0label\">ACCUEIL</p>\n  - attempting select option action\n    - waiting for element to be visible and enabled\n",
+          "url": "https://www.cabinetclgi.com/",
+          "timestamp": "2026-04-04T20:59:13.060Z"
+        }
+      ]
+    },
+    {
       "id": "565bdad0-592d-437d-b0be-f3acb8410b73",
       "targetUrl": "https://httpbin.org/forms/post",
       "status": "completed",

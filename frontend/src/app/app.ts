@@ -55,6 +55,20 @@ export class App implements OnInit, OnDestroy {
   targetUrl = '';
   isRunning = false;
   
+  // Form fill options
+  fillForms = true;
+  formData = {
+    email: 'test@example.com',
+    password: 'TestPass123!',
+    name: 'Test User',
+    phone: '0612345678',
+    address: '123 Rue de Test',
+    city: 'Paris',
+    search: 'test query',
+    message: 'Ceci est un message de test automatique.',
+    custom: ''
+  };
+  
   logs: { type: string; message: string; time: string }[] = [];
   steps: Step[] = [];
   bugs: Bug[] = [];
@@ -173,7 +187,9 @@ export class App implements OnInit, OnDestroy {
     const body = {
       targetUrl: scenario?.targetUrl || this.targetUrl,
       scenarioId,
-      steps: scenario?.steps || []
+      steps: scenario?.steps || [],
+      fillForms: this.fillForms,
+      formData: this.formData
     };
     
     this.http.post(`${this.API_URL}/tests/start`, body).subscribe({

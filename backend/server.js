@@ -123,7 +123,7 @@ app.post('/api/tests/start', async (req, res) => {
     return res.status(400).json({ error: 'A test is already running' });
   }
   
-  const { scenarioId, targetUrl, steps } = req.body;
+  const { scenarioId, targetUrl, steps, fillForms = true, formData = {} } = req.body;
   
   const session = {
     id: uuidv4(),
@@ -133,7 +133,8 @@ app.post('/api/tests/start', async (req, res) => {
     startedAt: new Date().toISOString(),
     endedAt: null,
     steps: [],
-    bugs: []
+    bugs: [],
+    formData: formData
   };
   
   // Save session
@@ -148,7 +149,7 @@ app.post('/api/tests/start', async (req, res) => {
   res.json({ sessionId: session.id, status: 'started' });
   
   // Run test in background
-  runTest(session.id, targetUrl, steps || []);
+  runTest(session.id, targetUrl, steps || [], fillForms, formData);
 });
 
 // Stop test
@@ -170,7 +171,7 @@ app.delete('/api/tests/sessions/:id', (req, res) => {
 });
 
 // Run Playwright test
-async function runTest(sessionId, targetUrl, scenarioSteps) {
+async function runTest(sessionId, targetUrl, scenarioSteps, fillForms = true, formData = {}) {
   const browser = await chromium.launch({ 
     headless: true,
     args: ['--no-sandbox', '--disable-dev-shm-usage']
@@ -218,14 +219,14 @@ async function runTest(sessionId, targetUrl, scenarioSteps) {
         if (currentTest.shouldStop) break;
         
         try {
-          await executeStep(page, step, sessionId);
+          await executeStep(page, step, sessionId, formData);
         } catch (e) {
           await addBug(sessionId, 'step_error', e.message, page.url());
         }
       }
     } else {
       // Auto-explore mode
-      await autoExplore(page, sessionId, targetUrl);
+      await autoExplore(page, sessionId, targetUrl, fillForms, formData);
     }
     
     // Record any errors as bugs
@@ -263,7 +264,7 @@ async function runTest(sessionId, targetUrl, scenarioSteps) {
 }
 
 // Execute a single step
-async function executeStep(page, step, sessionId) {
+async function executeStep(page, step, sessionId, formData = {}) {
   broadcast({ type: 'progress', message: `Executing: ${step.action} - ${step.description || ''}` });
   
   switch (step.action) {
@@ -274,8 +275,16 @@ async function executeStep(page, step, sessionId) {
       break;
       
     case 'fill':
-      await page.fill(step.selector, step.value || '');
-      await captureStep(page, sessionId, 'fill', `Filled: ${step.selector} = ${step.value}`, page.url());
+      // Use formData value if available, otherwise use step value
+      let fillValue = step.value || '';
+      const selectorLower = step.selector.toLowerCase();
+      if (selectorLower.includes('email') && formData.email) fillValue = formData.email;
+      else if (selectorLower.includes('password') && formData.password) fillValue = formData.password;
+      else if (selectorLower.includes('name') && formData.name) fillValue = formData.name;
+      else if (selectorLower.includes('phone') && formData.phone) fillValue = formData.phone;
+      
+      await page.fill(step.selector, fillValue);
+      await captureStep(page, sessionId, 'fill', `Filled: ${step.selector} = ${fillValue}`, page.url());
       break;
       
     case 'select':
@@ -304,7 +313,7 @@ async function executeStep(page, step, sessionId) {
 }
 
 // Auto-explore mode
-async function autoExplore(page, sessionId, baseUrl) {
+async function autoExplore(page, sessionId, baseUrl, fillForms = true, formData = {}) {
   const visitedUrls = new Set([baseUrl]);
   const urlsToVisit = [];
   
@@ -330,35 +339,84 @@ async function autoExplore(page, sessionId, baseUrl) {
   }
   
   // Find and fill forms
-  const forms = await page.$$('form');
-  for (const form of forms.slice(0, 3)) {
-    if (currentTest.shouldStop) break;
-    
-    try {
-      broadcast({ type: 'progress', message: 'Filling form...' });
+  if (fillForms) {
+    const forms = await page.$$('form');
+    for (const form of forms.slice(0, 3)) {
+      if (currentTest.shouldStop) break;
       
-      const inputs = await form.$$('input[type="text"], input[type="email"], input[type="password"], textarea');
-      for (const input of inputs) {
-        const type = await input.getAttribute('type') || 'text';
-        const name = await input.getAttribute('name') || '';
+      try {
+        broadcast({ type: 'progress', message: 'Filling form...' });
         
-        let value = 'Test Value';
-        if (type === 'email' || name.includes('email')) value = 'test@example.com';
-        else if (type === 'password') value = 'TestPass123!';
-        else if (name.includes('phone')) value = '0612345678';
+        const inputs = await form.$$('input[type="text"], input[type="email"], input[type="password"], input[type="tel"], input[type="search"], input[type="number"], textarea');
+        for (const input of inputs) {
+          const type = await input.getAttribute('type') || 'text';
+          const name = (await input.getAttribute('name') || '').toLowerCase();
+          const placeholder = (await input.getAttribute('placeholder') || '').toLowerCase();
+          const id = (await input.getAttribute('id') || '').toLowerCase();
+          const fieldHint = name + placeholder + id;
+          
+          let value = formData.custom || 'Test Value';
+          
+          // Match field to formData
+          if (type === 'email' || fieldHint.includes('email') || fieldHint.includes('mail')) {
+            value = formData.email || 'test@example.com';
+          } else if (type === 'password' || fieldHint.includes('password') || fieldHint.includes('pass')) {
+            value = formData.password || 'TestPass123!';
+          } else if (fieldHint.includes('phone') || fieldHint.includes('tel') || fieldHint.includes('mobile')) {
+            value = formData.phone || '0612345678';
+          } else if (fieldHint.includes('name') || fieldHint.includes('nom') || fieldHint.includes('prenom') || fieldHint.includes('firstname') || fieldHint.includes('lastname')) {
+            value = formData.name || 'Test User';
+          } else if (fieldHint.includes('address') || fieldHint.includes('adresse') || fieldHint.includes('rue') || fieldHint.includes('street')) {
+            value = formData.address || '123 Rue de Test';
+          } else if (fieldHint.includes('city') || fieldHint.includes('ville') || fieldHint.includes('town')) {
+            value = formData.city || 'Paris';
+          } else if (fieldHint.includes('search') || fieldHint.includes('query') || fieldHint.includes('recherche')) {
+            value = formData.search || 'test query';
+          } else if (fieldHint.includes('message') || fieldHint.includes('comment') || fieldHint.includes('description') || fieldHint.includes('text')) {
+            value = formData.message || 'Ceci est un message de test automatique.';
+          } else if (type === 'number') {
+            value = '42';
+          }
+          
+          await input.fill(value).catch(() => {});
+          broadcast({ type: 'progress', message: `Filled: ${name || type} = ${value.slice(0, 20)}...` });
+        }
         
-        await input.fill(value).catch(() => {});
-      }
-      
-      await captureStep(page, sessionId, 'fill_form', 'Filled form fields', page.url());
-      
-      const submitBtn = await form.$('button[type="submit"], input[type="submit"]');
-      if (submitBtn) {
-        await submitBtn.click().catch(() => {});
-        await page.waitForTimeout(2000);
-        await captureStep(page, sessionId, 'submit', 'Submitted form', page.url());
-      }
-    } catch (e) {}
+        // Handle select dropdowns
+        const selects = await form.$$('select');
+        for (const select of selects) {
+          try {
+            const options = await select.$$('option');
+            if (options.length > 1) {
+              const optionValue = await options[1].getAttribute('value');
+              if (optionValue) {
+                await select.selectOption(optionValue);
+              }
+            }
+          } catch (e) {}
+        }
+        
+        // Handle checkboxes
+        const checkboxes = await form.$$('input[type="checkbox"]');
+        for (const checkbox of checkboxes) {
+          try {
+            const isChecked = await checkbox.isChecked();
+            if (!isChecked) {
+              await checkbox.check();
+            }
+          } catch (e) {}
+        }
+        
+        await captureStep(page, sessionId, 'fill_form', 'Filled form fields', page.url());
+        
+        const submitBtn = await form.$('button[type="submit"], input[type="submit"]');
+        if (submitBtn) {
+          await submitBtn.click().catch(() => {});
+          await page.waitForTimeout(2000);
+          await captureStep(page, sessionId, 'submit', 'Submitted form', page.url());
+        }
+      } catch (e) {}
+    }
   }
   
   // Find links and visit them
