@@ -18,7 +18,7 @@ Application Playwright de test automatise qui explore un site web, clique partou
 
 ## Technical Stack (CURRENT)
 - **Backend**: Node.js, Express, Playwright, WebSocket
-- **Frontend**: Angular 21 (Standalone Components), static build served via http-server
+- **Frontend**: Angular 21 (Standalone Components, zone-less), static build served via http-server
 - **Storage**: JSON files (scenarios.json, tests.json) - NO DATABASE
 - **Design**: Swiss/Brutalist (Chivo, IBM Plex Sans, JetBrains Mono)
 
@@ -55,6 +55,7 @@ Application Playwright de test automatise qui explore un site web, clique partou
 - Auto-switch vers le journal quand un test demarre
 - Reconstruction du journal depuis l'historique (clic sur session passee)
 - Bugs affiches en rouge avec URL
+- Fix: ChangeDetectorRef pour Angular zone-less (WebSocket + change detection)
 
 ## Prioritized Backlog
 
@@ -93,6 +94,7 @@ Application Playwright de test automatise qui explore un site web, clique partou
 - GET /api/screenshots/:filename
 
 ### IMPORTANT
+- Angular 21 fonctionne en mode ZONE-LESS: utiliser ChangeDetectorRef.detectChanges() pour forcer le rendu apres WebSocket
 - Frontend est un build statique. Apres modification, executer `cd /app/frontend && yarn build`
 - Pas de hot-reload Angular
 - Pas de base de donnees - tout est en JSON

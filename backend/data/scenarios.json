@@ -1,6 +1,26 @@
 {
   "scenarios": [
     {
+      "id": "ca863dcd-0844-406d-8c51-b78971549f33",
+      "name": "Test Rapide",
+      "targetUrl": "https://httpbin.org/forms/post",
+      "steps": [
+        {
+          "action": "fill",
+          "selector": "input[name=\"custname\"]",
+          "value": "Jean Test",
+          "description": "Remplir nom"
+        },
+        {
+          "action": "click",
+          "selector": "button[type=\"submit\"]",
+          "value": "",
+          "description": "Soumettre"
+        }
+      ],
+      "createdAt": "2026-04-04T21:51:25.364Z"
+    },
+    {
       "id": "2b05fd69-2856-414e-a584-59e79f239bd9",
       "name": "Test Google",
       "targetUrl": "https://www.google.com",

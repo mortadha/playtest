@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
@@ -107,7 +107,7 @@ export class App implements OnInit, OnDestroy {
   testProgress = 0;
   totalScenarioSteps = 0;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private cdr: ChangeDetectorRef) {}
 
   ngOnInit() {
     this.connectWebSocket();
@@ -126,6 +126,7 @@ export class App implements OnInit, OnDestroy {
     
     this.ws.onopen = () => {
       this.addLog('info', 'Connected to server');
+      this.cdr.detectChanges();
     };
     
     this.ws.onmessage = (event) => {
@@ -164,10 +165,13 @@ export class App implements OnInit, OnDestroy {
           this.addJournalEntry('bug', 'error', `Erreur: ${data.message}`);
           break;
       }
+      
+      this.cdr.detectChanges();
     };
     
     this.ws.onclose = () => {
       this.addLog('info', 'Disconnected from server');
+      this.cdr.detectChanges();
       setTimeout(() => this.connectWebSocket(), 3000);
     };
   }

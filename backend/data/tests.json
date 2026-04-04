@@ -1,6 +1,283 @@
 {
   "sessions": [
     {
+      "id": "96fc4e4d-293c-4740-b480-7c942fef075c",
+      "scenarioId": "ca863dcd-0844-406d-8c51-b78971549f33",
+      "targetUrl": "https://httpbin.org/forms/post",
+      "status": "completed",
+      "startedAt": "2026-04-04T21:51:26.923Z",
+      "endedAt": "2026-04-04T21:51:37.582Z",
+      "steps": [
+        {
+          "id": "f28bf6ba-4b8f-4d66-8ce3-117ff2b6ed30",
+          "type": "visit",
+          "description": "Visited: https://httpbin.org/forms/post",
+          "url": "https://httpbin.org/forms/post",
+          "screenshot": "/api/screenshots/9746226f-7c8e-4bcc-be83-4d0d7f121fdd.png",
+          "timestamp": "2026-04-04T21:51:27.477Z"
+        },
+        {
+          "id": "f3b2fcd4-5cb3-4332-af5a-508bc5d00ca3",
+          "type": "fill",
+          "description": "Filled: input[name=\"custname\"] = Test User",
+          "url": "https://httpbin.org/forms/post",
+          "screenshot": "/api/screenshots/ae37c2e3-8b95-4308-b857-9cb0db6a259c.png",
+          "timestamp": "2026-04-04T21:51:27.580Z"
+        }
+      ],
+      "bugs": [
+        {
+          "id": "6adecfc3-cbff-4754-89bf-117b8fedc61b",
+          "type": "step_error",
+          "message": "page.click: Timeout 10000ms exceeded.\nCall log:\n  - waiting for locator('button[type=\"submit\"]')\n",
+          "url": "https://httpbin.org/forms/post",
+          "timestamp": "2026-04-04T21:51:37.581Z"
+        }
+      ],
+      "formData": {
+        "email": "test@example.com",
+        "password": "TestPass123!",
+        "name": "Test User",
+        "phone": "0612345678",
+        "address": "123 Rue de Test",
+        "city": "Paris",
+        "search": "test query",
+        "message": "Ceci est un message de test automatique.",
+        "custom": ""
+      }
+    },
+    {
+      "id": "971ed8b8-27b1-46a3-bbd0-a5623d5319c7",
+      "scenarioId": "2b05fd69-2856-414e-a584-59e79f239bd9",
+      "targetUrl": "https://www.google.com",
+      "status": "completed",
+      "startedAt": "2026-04-04T21:48:12.131Z",
+      "endedAt": "2026-04-04T21:48:14.240Z",
+      "steps": [
+        {
+          "id": "797791a0-51b3-42ee-870e-02e5a0843d23",
+          "type": "visit",
+          "description": "Visited: https://www.google.com",
+          "url": "https://www.google.com",
+          "screenshot": "/api/screenshots/44c9a881-9380-4f28-ae1c-b7c5f58feeaa.png",
+          "timestamp": "2026-04-04T21:48:12.976Z"
+        },
+        {
+          "id": "7942a78d-085d-415a-982e-c8863ad00f74",
+          "type": "click",
+          "description": "Clicked: textarea[name=\"q\"]",
+          "url": "https://www.google.com/",
+          "screenshot": "/api/screenshots/1664a76e-c37c-46a6-b00f-e12f74b486f9.png",
+          "timestamp": "2026-04-04T21:48:14.239Z"
+        }
+      ],
+      "bugs": [],
+      "formData": {
+        "email": "test@example.com",
+        "password": "TestPass123!",
+        "name": "Test User",
+        "phone": "0612345678",
+        "address": "123 Rue de Test",
+        "city": "Paris",
+        "search": "test query",
+        "message": "Ceci est un message de test automatique.",
+        "custom": ""
+      }
+    },
+    {
+      "id": "d4b5be9b-c0e2-43db-b23c-907b1af06dce",
+      "scenarioId": "2b05fd69-2856-414e-a584-59e79f239bd9",
+      "targetUrl": "https://www.google.com",
+      "status": "completed",
+      "startedAt": "2026-04-04T21:46:21.403Z",
+      "endedAt": "2026-04-04T21:46:23.546Z",
+      "steps": [
+        {
+          "id": "831b7d8b-6835-488d-a4d3-682870c4a705",
+          "type": "visit",
+          "description": "Visited: https://www.google.com",
+          "url": "https://www.google.com",
+          "screenshot": "/api/screenshots/c4bc7d8f-e28a-42f7-905f-2b3200b6a971.png",
+          "timestamp": "2026-04-04T21:46:22.373Z"
+        },
+        {
+          "id": "a2f9206c-151d-44ba-9a87-84b8cc050e40",
+          "type": "click",
+          "description": "Clicked: textarea[name=\"q\"]",
+          "url": "https://www.google.com/",
+          "screenshot": "/api/screenshots/6c32a2f4-6dd4-47ec-b615-3b1e051c53d2.png",
+          "timestamp": "2026-04-04T21:46:23.545Z"
+        }
+      ],
+      "bugs": [],
+      "formData": {
+        "email": "test@example.com",
+        "password": "TestPass123!",
+        "name": "Test User",
+        "phone": "0612345678",
+        "address": "123 Rue de Test",
+        "city": "Paris",
+        "search": "test query",
+        "message": "Ceci est un message de test automatique.",
+        "custom": ""
+      }
+    },
+    {
+      "id": "5ea0f4df-ac18-4669-85b6-9f92dfb9c4aa",
+      "scenarioId": "291028be-8151-4ae9-8fdf-83cb77d97365",
+      "targetUrl": "https://www.cabinetclgi.com/",
+      "status": "stopped",
+      "startedAt": "2026-04-04T21:45:50.492Z",
+      "endedAt": "2026-04-04T21:46:04.499Z",
+      "steps": [
+        {
+          "id": "72a6859a-4c45-4984-9130-ad18cb0a7612",
+          "type": "visit",
+          "description": "Visited: https://www.cabinetclgi.com/",
+          "url": "https://www.cabinetclgi.com/",
+          "screenshot": "/api/screenshots/2be3597d-bfd6-4fbf-94d9-acc4c12983a5.png",
+          "timestamp": "2026-04-04T21:45:52.530Z"
+        },
+        {
+          "id": "9f7baef6-0bbf-4a99-ab25-9d706c7b62e5",
+          "type": "click",
+          "description": "Clicked: #comp-ij49n5sk2label",
+          "url": "https://www.cabinetclgi.com/espace-client",
+          "screenshot": "/api/screenshots/b3144d5a-c58c-4aff-a957-00b66362e003.png",
+          "timestamp": "2026-04-04T21:45:54.494Z"
+        }
+      ],
+      "bugs": [
+        {
+          "id": "1d99c52b-6f50-4e2e-bd37-107b2d3be560",
+          "type": "step_error",
+          "message": "page.click: Timeout 10000ms exceeded.\nCall log:\n  - waiting for locator('.h6imkB wixui-button__label')\n",
+          "url": "https://www.cabinetclgi.com/espace-client",
+          "timestamp": "2026-04-04T21:46:04.494Z"
+        },
+        {
+          "id": "c3acdab3-4db0-461a-b5a2-530c53df5acf",
+          "type": "console_error",
+          "message": "Failed to load resource: the server responded with a status of 403 ()",
+          "url": "https://www.cabinetclgi.com/espace-client",
+          "timestamp": "2026-04-04T21:46:04.495Z"
+        },
+        {
+          "id": "5175de3d-c4d3-47d5-ba97-470f839918f9",
+          "type": "console_error",
+          "message": "Failed to load resource: the server responded with a status of 403 ()",
+          "url": "https://www.cabinetclgi.com/espace-client",
+          "timestamp": "2026-04-04T21:46:04.495Z"
+        },
+        {
+          "id": "b1ff79e8-8a66-4702-8493-50fd9aff4a6a",
+          "type": "console_error",
+          "message": "Failed to load resource: the server responded with a status of 403 ()",
+          "url": "https://www.cabinetclgi.com/espace-client",
+          "timestamp": "2026-04-04T21:46:04.496Z"
+        },
+        {
+          "id": "ad9f37e8-9d1c-48b4-99c3-c9baf31b70c1",
+          "type": "console_error",
+          "message": "Failed to load resource: the server responded with a status of 403 ()",
+          "url": "https://www.cabinetclgi.com/espace-client",
+          "timestamp": "2026-04-04T21:46:04.498Z"
+        }
+      ],
+      "formData": {
+        "email": "test@example.com",
+        "password": "TestPass123!",
+        "name": "Test User",
+        "phone": "0612345678",
+        "address": "123 Rue de Test",
+        "city": "Paris",
+        "search": "test query",
+        "message": "Ceci est un message de test automatique.",
+        "custom": ""
+      }
+    },
+    {
+      "id": "d84df713-86ef-4f4e-a5bb-636d2e1a4a51",
+      "scenarioId": "291028be-8151-4ae9-8fdf-83cb77d97365",
+      "targetUrl": "https://www.cabinetclgi.com/",
+      "status": "stopped",
+      "startedAt": "2026-04-04T21:45:03.812Z",
+      "endedAt": "2026-04-04T21:45:47.271Z",
+      "steps": [
+        {
+          "id": "98c31c93-d182-4047-8c1c-dbba0ff075ce",
+          "type": "visit",
+          "description": "Visited: https://www.cabinetclgi.com/",
+          "url": "https://www.cabinetclgi.com/",
+          "screenshot": "/api/screenshots/2ac26a1d-7a1c-4027-b376-3d37d0e6d30a.png",
+          "timestamp": "2026-04-04T21:45:05.366Z"
+        },
+        {
+          "id": "9e1029f7-add8-47a9-914b-16b89faf58eb",
+          "type": "click",
+          "description": "Clicked: #comp-ij49n5sk2label",
+          "url": "https://www.cabinetclgi.com/espace-client",
+          "screenshot": "/api/screenshots/3ba10ee4-47ee-4ae2-88a9-0731f0e0b17d.png",
+          "timestamp": "2026-04-04T21:45:07.266Z"
+        }
+      ],
+      "bugs": [
+        {
+          "id": "030a8bcb-dd64-4891-8bda-e081d1ff8352",
+          "type": "step_error",
+          "message": "page.click: Timeout 10000ms exceeded.\nCall log:\n  - waiting for locator('.h6imkB wixui-button__label')\n",
+          "url": "https://www.cabinetclgi.com/espace-client",
+          "timestamp": "2026-04-04T21:45:17.267Z"
+        },
+        {
+          "id": "5954e778-a88a-4c73-a186-d59a32d0e3e6",
+          "type": "step_error",
+          "message": "page.fill: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('#nom')\n",
+          "url": "https://www.cabinetclgi.com/espace-client",
+          "timestamp": "2026-04-04T21:45:47.268Z"
+        },
+        {
+          "id": "52a04d9a-2149-4b76-94e7-c7c61bd9bc68",
+          "type": "console_error",
+          "message": "Failed to load resource: the server responded with a status of 403 ()",
+          "url": "https://www.cabinetclgi.com/espace-client",
+          "timestamp": "2026-04-04T21:45:47.268Z"
+        },
+        {
+          "id": "c18b9716-1477-44d1-8be9-531744bb04aa",
+          "type": "console_error",
+          "message": "Failed to load resource: the server responded with a status of 403 ()",
+          "url": "https://www.cabinetclgi.com/espace-client",
+          "timestamp": "2026-04-04T21:45:47.269Z"
+        },
+        {
+          "id": "2c4d259e-2ceb-4dd5-895f-fef3cda43cd5",
+          "type": "console_error",
+          "message": "Failed to load resource: the server responded with a status of 403 ()",
+          "url": "https://www.cabinetclgi.com/espace-client",
+          "timestamp": "2026-04-04T21:45:47.270Z"
+        },
+        {
+          "id": "5de707de-c6e3-4b86-9883-1c75dc8c0ca2",
+          "type": "console_error",
+          "message": "Failed to load resource: the server responded with a status of 403 ()",
+          "url": "https://www.cabinetclgi.com/espace-client",
+          "timestamp": "2026-04-04T21:45:47.270Z"
+        }
+      ],
+      "formData": {
+        "email": "test@example.com",
+        "password": "TestPass123!",
+        "name": "Test User",
+        "phone": "0612345678",
+        "address": "123 Rue de Test",
+        "city": "Paris",
+        "search": "test query",
+        "message": "Ceci est un message de test automatique.",
+        "custom": ""
+      }
+    },
+    {
       "id": "f2f5e52a-5ae1-472e-bf0a-ab01cc12ab03",
       "scenarioId": "2b05fd69-2856-414e-a584-59e79f239bd9",
       "targetUrl": "https://www.google.com",
