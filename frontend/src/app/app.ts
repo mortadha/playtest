@@ -86,6 +86,7 @@ export class App implements OnInit, OnDestroy {
   
   // Selected session for viewing
   selectedSession: Session | null = null;
+  currentScenarioId: string | null = null;
 
   constructor(private http: HttpClient) {}
 
@@ -181,6 +182,7 @@ export class App implements OnInit, OnDestroy {
     this.logs = [];
     this.steps = [];
     this.bugs = [];
+    this.currentScenarioId = scenarioId || null;
     
     const scenario = scenarioId ? this.scenarios.find(s => s.id === scenarioId) : null;
     

@@ -288,6 +288,23 @@
                 </div>
                 <div class="scenario-url">{{ scenario.targetUrl }}</div>
                 <div class="scenario-steps-count">{{ scenario.steps.length }} étapes</div>
+                
+                <!-- Logs du test en cours pour ce scénario -->
+                @if (isRunning && currentScenarioId === scenario.id) {
+                  <div style="margin-top: 12px; background: #0A0A0A; padding: 12px; max-height: 200px; overflow-y: auto;">
+                    <div style="font-size: 10px; color: #71717A; text-transform: uppercase; margin-bottom: 8px;">
+                      Test en cours...
+                    </div>
+                    @for (log of logs.slice(-10); track log.time) {
+                      <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; padding: 2px 0;">
+                        <span style="color: #6B7280;">[{{ log.time }}]</span>
+                        <span [style.color]="log.type === 'error' ? '#FF3B30' : log.type === 'success' ? '#00C566' : '#60A5FA'">
+                          {{ log.message }}
+                        </span>
+                      </div>
+                    }
+                  </div>
+                }
               </div>
             }
           }

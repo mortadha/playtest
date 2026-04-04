@@ -1,6 +1,34 @@
 {
   "sessions": [
     {
+      "id": "bb3e750a-6636-4af8-924a-e717614eed3b",
+      "scenarioId": "64034742-586f-4584-9082-1f0acf730e67",
+      "targetUrl": "https://www.cabinetclgi.com/",
+      "status": "completed",
+      "startedAt": "2026-04-04T21:17:52.468Z",
+      "endedAt": "2026-04-04T21:17:54.270Z",
+      "steps": [
+        {
+          "id": "ff2cacf0-ab43-4e99-a191-b5c8f7afd10c",
+          "type": "visit",
+          "description": "Visited: https://www.cabinetclgi.com/",
+          "url": "https://www.cabinetclgi.com/",
+          "screenshot": "/api/screenshots/e49e153b-0249-4d85-af7a-7c4d0f271027.png",
+          "timestamp": "2026-04-04T21:17:54.165Z"
+        }
+      ],
+      "bugs": [
+        {
+          "id": "a5616bae-1a01-4550-b844-dd8f912bc12d",
+          "type": "step_error",
+          "message": "page.selectOption: Error: Element is not a <select> element\nCall log:\n  - waiting for locator('.JS76Uv')\n    - locator resolved to 5 elements. Proceeding with the first one: <p class=\"JS76Uv\" id=\"comp-ij49n5sk0label\">ACCUEIL</p>\n  - attempting select option action\n    - waiting for element to be visible and enabled\n",
+          "url": "https://www.cabinetclgi.com/",
+          "timestamp": "2026-04-04T21:17:54.269Z"
+        }
+      ],
+      "formData": {}
+    },
+    {
       "id": "0d1b6cd2-2a11-47ac-b771-f1aa92eee69e",
       "targetUrl": "https://httpbin.org/forms/post",
       "status": "completed",
