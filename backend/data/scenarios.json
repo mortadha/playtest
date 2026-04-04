@@ -1,6 +1,64 @@
 {
   "scenarios": [
     {
+      "id": "2b05fd69-2856-414e-a584-59e79f239bd9",
+      "name": "Test Google",
+      "targetUrl": "https://www.google.com",
+      "steps": [
+        {
+          "action": "click",
+          "selector": "textarea[name=\"q\"]",
+          "value": "",
+          "description": "Barre de recherche"
+        }
+      ],
+      "createdAt": "2026-04-04T21:41:41.601Z"
+    },
+    {
+      "id": "291028be-8151-4ae9-8fdf-83cb77d97365",
+      "name": "test",
+      "targetUrl": "https://www.cabinetclgi.com/",
+      "steps": [
+        {
+          "action": "click",
+          "selector": "#comp-ij49n5sk2label",
+          "value": "",
+          "description": ""
+        },
+        {
+          "action": "click",
+          "selector": ".h6imkB wixui-button__label",
+          "value": "",
+          "description": ""
+        },
+        {
+          "action": "fill",
+          "selector": "#nom",
+          "value": "morta.est@hotmail.fr",
+          "description": ""
+        },
+        {
+          "action": "click",
+          "selector": ". btn-success",
+          "value": "",
+          "description": ""
+        },
+        {
+          "action": "fill",
+          "selector": "#pass",
+          "value": "22761871Morta**",
+          "description": ""
+        },
+        {
+          "action": "click",
+          "selector": ".btn-success",
+          "value": "",
+          "description": ""
+        }
+      ],
+      "createdAt": "2026-04-04T21:24:30.192Z"
+    },
+    {
       "id": "64034742-586f-4584-9082-1f0acf730e67",
       "name": "test",
       "targetUrl": "https://www.cabinetclgi.com/",

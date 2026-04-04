@@ -7,20 +7,23 @@
     </div>
     
     <nav class="sidebar-nav">
-      <div class="nav-item" [class.active]="activeTab === 'dashboard'" (click)="activeTab = 'dashboard'">
-        ⚙️ Dashboard
+      <div class="nav-item" [class.active]="activeTab === 'dashboard'" (click)="activeTab = 'dashboard'" data-testid="nav-dashboard">
+        Dashboard
       </div>
-      <div class="nav-item" [class.active]="activeTab === 'scenarios'" (click)="activeTab = 'scenarios'">
-        📋 Scénarios ({{ scenarios.length }})
+      <div class="nav-item" [class.active]="activeTab === 'journal'" (click)="activeTab = 'journal'" data-testid="nav-journal">
+        Journal ({{ journalEntries.length }})
       </div>
-      <div class="nav-item" [class.active]="activeTab === 'steps'" (click)="activeTab = 'steps'">
-        📸 Étapes ({{ steps.length }})
+      <div class="nav-item" [class.active]="activeTab === 'scenarios'" (click)="activeTab = 'scenarios'" data-testid="nav-scenarios">
+        Scenarios ({{ scenarios.length }})
       </div>
-      <div class="nav-item" [class.active]="activeTab === 'bugs'" (click)="activeTab = 'bugs'">
-        🐛 Bugs ({{ bugs.length }})
+      <div class="nav-item" [class.active]="activeTab === 'steps'" (click)="activeTab = 'steps'" data-testid="nav-steps">
+        Etapes ({{ steps.length }})
       </div>
-      <div class="nav-item" [class.active]="activeTab === 'history'" (click)="activeTab = 'history'">
-        📜 Historique
+      <div class="nav-item" [class.active]="activeTab === 'bugs'" (click)="activeTab = 'bugs'" data-testid="nav-bugs">
+        Bugs ({{ bugs.length }})
+      </div>
+      <div class="nav-item" [class.active]="activeTab === 'history'" (click)="activeTab = 'history'" data-testid="nav-history">
+        Historique
       </div>
     </nav>
     
@@ -57,58 +60,17 @@
           </div>
         </div>
 
-        <!-- Config + Logs -->
-        <div class="grid-2" style="margin-top: 24px;">
-          <!-- Quick Test -->
-          <div class="panel">
-            <h3 class="panel-title">Test Rapide</h3>
-            
-            <div class="input-group">
-              <label>URL du Site à Tester</label>
-              <input type="url" [(ngModel)]="targetUrl" placeholder="https://votre-site.com" [disabled]="isRunning">
-            </div>
-
-            <div class="flex-gap" style="margin-top: 16px;">
-              @if (!isRunning) {
-                <button class="btn btn-primary" (click)="startTest()" [disabled]="!targetUrl" style="flex: 1;">
-                  ▶️ Démarrer
-                </button>
-              } @else {
-                <button class="btn btn-danger" (click)="stopTest()" style="flex: 1;">
-                  ⏹️ Arrêter
-                </button>
-              }
-            </div>
-          </div>
-
-          <!-- Activity Log -->
-          <div class="panel">
-            <h3 class="panel-title">Journal d'Activité</h3>
-            <div class="activity-log">
-              @if (logs.length === 0) {
-                <div style="color: #71717A;">En attente de démarrage...</div>
-              }
-              @for (log of logs; track log.time) {
-                <div class="log-entry">
-                  <span class="log-time">[{{ log.time }}]</span>
-                  <span class="log-message" [class]="log.type">{{ log.message }}</span>
-                </div>
-              }
-            </div>
-          </div>
-        </div>
-
         <!-- Saved Scenarios -->
         @if (scenarios.length > 0) {
           <div class="panel">
-            <h3 class="panel-title">Lancer un Scénario Sauvegardé</h3>
-            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px;">
+            <h3 class="panel-title">Lancer un Scénario</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 12px;">
               @for (scenario of scenarios; track scenario.id) {
-                <div style="background: #fff; border: 1px solid #E4E4E7; padding: 16px;">
+                <div style="background: #fff; border: 1px solid #E4E4E7; padding: 16px;" [style.border-color]="isRunning && currentScenarioId === scenario.id ? '#0047FF' : '#E4E4E7'">
                   <div style="display: flex; justify-content: space-between; align-items: center;">
                     <h4 style="font-family: 'Chivo', sans-serif; font-weight: 700; margin: 0;">{{ scenario.name }}</h4>
                     <button class="btn btn-primary btn-sm" (click)="startTest(scenario.id)" [disabled]="isRunning">
-                      ▶️
+                      {{ isRunning && currentScenarioId === scenario.id ? '⏳ En cours...' : '▶️ Exécuter' }}
                     </button>
                   </div>
                   <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #71717A; margin-top: 8px;">
@@ -117,11 +79,162 @@
                   <div style="font-size: 12px; color: #52525B; margin-top: 4px;">
                     {{ scenario.steps.length }} étapes
                   </div>
+                  
+                  <!-- Logs du test en cours -->
+                  @if (isRunning && currentScenarioId === scenario.id) {
+                    <div style="margin-top: 12px; background: #0A0A0A; padding: 12px; max-height: 250px; overflow-y: auto;">
+                      <div style="font-size: 10px; color: #00C566; text-transform: uppercase; margin-bottom: 8px;">
+                        ● TEST EN COURS...
+                      </div>
+                      @for (log of logs; track $index) {
+                        <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; padding: 2px 0;">
+                          <span style="color: #6B7280;">[{{ log.time }}]</span>
+                          <span [style.color]="log.type === 'error' ? '#FF3B30' : log.type === 'success' ? '#00C566' : '#60A5FA'">
+                            {{ log.message }}
+                          </span>
+                        </div>
+                      }
+                    </div>
+                  }
                 </div>
               }
             </div>
           </div>
+        } @else {
+          <div class="panel">
+            <div class="empty-state">
+              <div class="empty-icon">📋</div>
+              <div class="empty-text">Aucun scénario créé. Allez dans "Scénarios" pour en créer un.</div>
+            </div>
+          </div>
         }
+      </div>
+    }
+
+    <!-- Journal d'activite en temps reel -->
+    @if (activeTab === 'journal') {
+      <div class="journal-view" data-testid="journal-view">
+        <!-- Header -->
+        <div class="journal-header">
+          <div class="journal-title-row">
+            <h2>JOURNAL D'ACTIVITE</h2>
+            @if (isRunning) {
+              <span class="live-badge" data-testid="journal-live-badge">LIVE</span>
+              <button class="btn btn-danger btn-sm" (click)="stopTest()" data-testid="journal-stop-btn">STOP</button>
+            }
+          </div>
+          @if (activeScenario) {
+            <div class="journal-scenario-info" data-testid="journal-scenario-info">
+              <span class="scenario-name-badge">{{ activeScenario.name }}</span>
+              <span class="scenario-url-text">{{ activeScenario.targetUrl }}</span>
+            </div>
+          }
+        </div>
+
+        <!-- Scenario Steps Plan + Live Timeline -->
+        <div class="journal-layout">
+          <!-- Left: Scenario Plan -->
+          @if (activeScenario && activeScenario.steps.length > 0) {
+            <div class="journal-plan" data-testid="journal-plan">
+              <div class="plan-header">SCENARIO PREVU</div>
+              <div class="plan-steps">
+                @for (step of activeScenario.steps; track $index; let i = $index) {
+                  <div class="plan-step" [class.done]="i < testProgress" [class.active]="i === testProgress && isRunning">
+                    <div class="plan-step-num" [class.done]="i < testProgress">{{ i + 1 }}</div>
+                    <div class="plan-step-content">
+                      <span class="plan-step-action">{{ step.action.toUpperCase() }}</span>
+                      @if (step.selector) {
+                        <code class="plan-step-selector">{{ step.selector }}</code>
+                      }
+                      @if (step.value) {
+                        <span class="plan-step-value">{{ step.value }}</span>
+                      }
+                      @if (step.description) {
+                        <span class="plan-step-desc">{{ step.description }}</span>
+                      }
+                    </div>
+                    @if (i < testProgress) {
+                      <span class="plan-check">OK</span>
+                    }
+                    @if (i === testProgress && isRunning) {
+                      <span class="plan-running">...</span>
+                    }
+                  </div>
+                }
+              </div>
+            </div>
+          }
+
+          <!-- Right: Live Timeline -->
+          <div class="journal-timeline" data-testid="journal-timeline">
+            <div class="timeline-header">
+              EXECUTION EN DIRECT
+              @if (journalEntries.length > 0) {
+                <span class="timeline-count">{{ journalEntries.length }} evenements</span>
+              }
+            </div>
+
+            @if (journalEntries.length === 0 && !isRunning) {
+              <div class="timeline-empty">
+                Lancez un test pour voir le journal en temps reel.
+              </div>
+            } @else {
+              <div class="timeline-entries">
+                @for (entry of journalEntries; track entry.id) {
+                  <div class="timeline-entry" [class]="'entry-' + entry.logType" data-testid="journal-entry">
+                    <!-- Timeline dot -->
+                    <div class="timeline-dot" [class]="'dot-' + entry.logType"></div>
+                    
+                    <!-- Entry content -->
+                    <div class="timeline-entry-content">
+                      <div class="entry-header">
+                        <span class="entry-type-badge" [class]="'badge-' + entry.type">
+                          @switch (entry.type) {
+                            @case ('step') { ETAPE }
+                            @case ('bug') { BUG }
+                            @case ('status') { STATUT }
+                            @case ('log') { LOG }
+                          }
+                        </span>
+                        <span class="entry-time">{{ entry.timestamp | date:'HH:mm:ss' }}</span>
+                      </div>
+                      <div class="entry-message">{{ entry.message }}</div>
+                      
+                      <!-- Screenshot for steps -->
+                      @if (entry.step?.screenshot) {
+                        <div class="entry-screenshot-toggle" (click)="toggleScreenshot(entry.id)" data-testid="toggle-screenshot">
+                          {{ journalExpanded[entry.id] ? 'Masquer capture' : 'Voir capture' }}
+                        </div>
+                        @if (journalExpanded[entry.id]) {
+                          <div class="entry-screenshot-container">
+                            <img [src]="entry.step!.screenshot" class="entry-screenshot" [alt]="entry.message" loading="lazy">
+                            <div class="entry-screenshot-url">{{ entry.step!.url }}</div>
+                          </div>
+                        }
+                      }
+                      
+                      <!-- Bug details -->
+                      @if (entry.bug) {
+                        <div class="entry-bug-detail">
+                          <div class="bug-url">{{ entry.bug.url }}</div>
+                        </div>
+                      }
+                    </div>
+                  </div>
+                }
+                
+                @if (isRunning) {
+                  <div class="timeline-entry entry-info">
+                    <div class="timeline-dot dot-running"></div>
+                    <div class="timeline-entry-content">
+                      <div class="entry-message running-text">En cours d'execution...</div>
+                    </div>
+                  </div>
+                }
+              </div>
+            }
+          </div>
+        </div>
       </div>
     }
 

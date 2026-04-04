@@ -29,6 +29,7 @@ interface Session {
   endedAt: string;
   steps: Step[];
   bugs: Bug[];
+  scenarioId?: string;
 }
 
 interface Scenario {
@@ -37,6 +38,16 @@ interface Scenario {
   targetUrl: string;
   steps: any[];
   createdAt: string;
+}
+
+interface JournalEntry {
+  id: number;
+  type: 'log' | 'step' | 'bug' | 'status';
+  logType?: string;
+  message: string;
+  step?: Step;
+  bug?: Bug;
+  timestamp: string;
 }
 
 @Component({
@@ -87,6 +98,14 @@ export class App implements OnInit, OnDestroy {
   // Selected session for viewing
   selectedSession: Session | null = null;
   currentScenarioId: string | null = null;
+  
+  // Journal - real-time activity log
+  journalEntries: JournalEntry[] = [];
+  journalEntryCounter = 0;
+  activeScenario: Scenario | null = null;
+  journalExpanded: { [key: number]: boolean } = {};
+  testProgress = 0;
+  totalScenarioSteps = 0;
 
   constructor(private http: HttpClient) {}
 
@@ -116,26 +135,33 @@ export class App implements OnInit, OnDestroy {
         case 'status':
           this.isRunning = data.status === 'running';
           this.addLog('info', `Test status: ${data.status}`);
+          this.addJournalEntry('status', 'info', `Statut du test: ${data.status}`);
           break;
         case 'progress':
           this.addLog('info', data.message);
+          this.addJournalEntry('log', 'info', data.message);
           break;
         case 'step':
           this.steps.push(data.step);
+          this.testProgress++;
           this.addLog('success', `Step: ${data.step.description}`);
+          this.addJournalEntry('step', 'success', data.step.description, data.step);
           break;
         case 'bug':
           this.bugs.push(data.bug);
           this.addLog('error', `BUG: ${data.bug.type} - ${data.bug.message}`);
+          this.addJournalEntry('bug', 'error', `${data.bug.type}: ${data.bug.message}`, undefined, data.bug);
           break;
         case 'completed':
           this.isRunning = false;
           this.addLog('success', `Test ${data.status}`);
+          this.addJournalEntry('status', data.status === 'completed' ? 'success' : 'warning', `Test terminé: ${data.status}`);
           this.loadSessions();
           break;
         case 'error':
           this.isRunning = false;
           this.addLog('error', `Error: ${data.message}`);
+          this.addJournalEntry('bug', 'error', `Erreur: ${data.message}`);
           break;
       }
     };
@@ -152,6 +178,23 @@ export class App implements OnInit, OnDestroy {
     if (this.logs.length > 100) {
       this.logs.shift();
     }
+  }
+
+  addJournalEntry(type: 'log' | 'step' | 'bug' | 'status', logType: string, message: string, step?: Step, bug?: Bug) {
+    this.journalEntryCounter++;
+    this.journalEntries.push({
+      id: this.journalEntryCounter,
+      type,
+      logType,
+      message,
+      step,
+      bug,
+      timestamp: new Date().toISOString()
+    });
+  }
+
+  toggleScreenshot(entryId: number) {
+    this.journalExpanded[entryId] = !this.journalExpanded[entryId];
   }
 
   loadSessions() {
@@ -174,17 +217,33 @@ export class App implements OnInit, OnDestroy {
   }
 
   startTest(scenarioId?: string) {
-    if (!this.targetUrl && !scenarioId) {
+    if (this.isRunning) {
+      this.addLog('error', 'Un test est déjà en cours');
+      return;
+    }
+    
+    const scenario = scenarioId ? this.scenarios.find(s => s.id === scenarioId) : null;
+    
+    if (!scenario && !this.targetUrl) {
       this.addLog('error', 'Please enter a URL');
       return;
     }
     
+    // Set running immediately
+    this.isRunning = true;
     this.logs = [];
     this.steps = [];
     this.bugs = [];
+    this.journalEntries = [];
+    this.journalEntryCounter = 0;
+    this.journalExpanded = {};
+    this.testProgress = 0;
     this.currentScenarioId = scenarioId || null;
+    this.activeScenario = scenario || null;
+    this.totalScenarioSteps = scenario ? scenario.steps.length : 0;
     
-    const scenario = scenarioId ? this.scenarios.find(s => s.id === scenarioId) : null;
+    // Switch to journal tab
+    this.activeTab = 'journal';
     
     const body = {
       targetUrl: scenario?.targetUrl || this.targetUrl,
@@ -194,12 +253,20 @@ export class App implements OnInit, OnDestroy {
       formData: this.formData
     };
     
+    this.addLog('info', 'Starting test...');
+    this.addJournalEntry('status', 'info', `Démarrage du test sur ${body.targetUrl}`);
+    
     this.http.post(`${this.API_URL}/tests/start`, body).subscribe({
       next: () => {
-        this.isRunning = true;
         this.addLog('success', 'Test started');
       },
-      error: (err) => this.addLog('error', `Failed to start: ${err.error?.error || err.message}`)
+      error: (err) => {
+        this.isRunning = false;
+        this.currentScenarioId = null;
+        this.activeScenario = null;
+        this.addLog('error', `Failed to start: ${err.error?.error || err.message}`);
+        this.addJournalEntry('bug', 'error', `Échec du démarrage: ${err.error?.error || err.message}`);
+      }
     });
   }
 
@@ -214,7 +281,45 @@ export class App implements OnInit, OnDestroy {
     this.selectedSession = session;
     this.steps = session.steps || [];
     this.bugs = session.bugs || [];
-    this.activeTab = 'steps';
+    
+    // Populate journal from session data
+    this.journalEntries = [];
+    this.journalEntryCounter = 0;
+    this.journalExpanded = {};
+    this.testProgress = 0;
+    
+    // Find scenario if it exists
+    this.activeScenario = session.scenarioId ? this.scenarios.find(s => s.id === session.scenarioId) || null : null;
+    this.totalScenarioSteps = this.activeScenario ? this.activeScenario.steps.length : 0;
+    
+    // Rebuild journal from session steps and bugs
+    const allEvents: { time: string; type: 'step' | 'bug'; data: any }[] = [];
+    
+    for (const step of (session.steps || [])) {
+      allEvents.push({ time: step.timestamp, type: 'step', data: step });
+    }
+    for (const bug of (session.bugs || [])) {
+      allEvents.push({ time: bug.timestamp, type: 'bug', data: bug });
+    }
+    
+    allEvents.sort((a, b) => new Date(a.time).getTime() - new Date(b.time).getTime());
+    
+    // Add start entry
+    this.addJournalEntry('status', 'info', `Session démarrée sur ${session.targetUrl}`);
+    
+    for (const ev of allEvents) {
+      if (ev.type === 'step') {
+        this.testProgress++;
+        this.addJournalEntry('step', 'success', ev.data.description, ev.data);
+      } else {
+        this.addJournalEntry('bug', 'error', `${ev.data.type}: ${ev.data.message}`, undefined, ev.data);
+      }
+    }
+    
+    // Add end entry
+    this.addJournalEntry('status', session.status === 'completed' ? 'success' : 'warning', `Test terminé: ${session.status}`);
+    
+    this.activeTab = 'journal';
   }
 
   deleteSession(id: string) {
