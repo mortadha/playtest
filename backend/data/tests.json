@@ -1,6 +1,178 @@
 {
   "sessions": [
     {
+      "id": "9a8681fb-9688-49e3-bc32-33b9183f514b",
+      "scenarioId": "ca863dcd-0844-406d-8c51-b78971549f33",
+      "targetUrl": "https://httpbin.org/forms/post",
+      "status": "completed",
+      "startedAt": "2026-04-05T11:19:06.154Z",
+      "endedAt": "2026-04-05T11:19:16.747Z",
+      "steps": [
+        {
+          "id": "32ea3af2-2165-48e1-82d6-ab8902b4d0dc",
+          "type": "visit",
+          "description": "Visited: https://httpbin.org/forms/post",
+          "url": "https://httpbin.org/forms/post",
+          "screenshot": "/api/screenshots/695508f1-9e1d-4348-b0bd-b409935d711b.png",
+          "timestamp": "2026-04-05T11:19:06.628Z"
+        },
+        {
+          "id": "4ef7e10f-7a1f-4cda-aadc-d0afff0acdf0",
+          "type": "fill",
+          "description": "Filled: input[name=\"custname\"] = Test User",
+          "url": "https://httpbin.org/forms/post",
+          "screenshot": "/api/screenshots/7940f57d-b09f-4c3f-b024-9953dfd0a6a1.png",
+          "timestamp": "2026-04-05T11:19:06.744Z"
+        }
+      ],
+      "bugs": [
+        {
+          "id": "3282e36d-69d7-45fd-9273-adbee66c3e7f",
+          "type": "step_error",
+          "message": "page.click: Timeout 10000ms exceeded.\nCall log:\n  - waiting for locator('button[type=\"submit\"]')\n",
+          "url": "https://httpbin.org/forms/post",
+          "timestamp": "2026-04-05T11:19:16.746Z"
+        }
+      ],
+      "formData": {
+        "email": "test@example.com",
+        "password": "TestPass123!",
+        "name": "Test User",
+        "phone": "0612345678",
+        "address": "123 Rue de Test",
+        "city": "Paris",
+        "search": "test query",
+        "message": "Ceci est un message de test automatique.",
+        "custom": ""
+      }
+    },
+    {
+      "id": "377eb501-c0a8-403e-abb1-d1d63a2fd0d7",
+      "scenarioId": "ca863dcd-0844-406d-8c51-b78971549f33",
+      "targetUrl": "https://httpbin.org/forms/post",
+      "status": "error",
+      "startedAt": "2026-04-05T11:17:00.124Z",
+      "endedAt": "2026-04-05T11:20:00.000Z",
+      "steps": [],
+      "bugs": [],
+      "formData": {
+        "email": "test@example.com",
+        "password": "TestPass123!",
+        "name": "Test User",
+        "phone": "0612345678",
+        "address": "123 Rue de Test",
+        "city": "Paris",
+        "search": "test query",
+        "message": "Ceci est un message de test automatique.",
+        "custom": ""
+      }
+    },
+    {
+      "id": "e65b682e-bc8d-47ec-8d27-869470106093",
+      "scenarioId": "291028be-8151-4ae9-8fdf-83cb77d97365",
+      "targetUrl": "https://www.cabinetclgi.com/",
+      "status": "error",
+      "startedAt": "2026-04-05T11:13:49.107Z",
+      "endedAt": "2026-04-05T11:20:00.000Z",
+      "steps": [],
+      "bugs": [],
+      "formData": {
+        "email": "test@example.com",
+        "password": "TestPass123!",
+        "name": "Test User",
+        "phone": "0612345678",
+        "address": "123 Rue de Test",
+        "city": "Paris",
+        "search": "test query",
+        "message": "Ceci est un message de test automatique.",
+        "custom": ""
+      }
+    },
+    {
+      "id": "057c7395-09cc-4247-a91f-4e80d6fd25d9",
+      "scenarioId": "291028be-8151-4ae9-8fdf-83cb77d97365",
+      "targetUrl": "https://www.cabinetclgi.com/",
+      "status": "error",
+      "startedAt": "2026-04-05T11:13:11.174Z",
+      "endedAt": "2026-04-05T11:20:00.000Z",
+      "steps": [],
+      "bugs": [],
+      "formData": {
+        "email": "test@example.com",
+        "password": "TestPass123!",
+        "name": "Test User",
+        "phone": "0612345678",
+        "address": "123 Rue de Test",
+        "city": "Paris",
+        "search": "test query",
+        "message": "Ceci est un message de test automatique.",
+        "custom": ""
+      }
+    },
+    {
+      "id": "41d53f07-e458-437b-ab8f-46fccc2ab9be",
+      "scenarioId": "ca863dcd-0844-406d-8c51-b78971549f33",
+      "targetUrl": "https://httpbin.org/forms/post",
+      "status": "error",
+      "startedAt": "2026-04-05T11:12:47.733Z",
+      "endedAt": "2026-04-05T11:20:00.000Z",
+      "steps": [],
+      "bugs": [],
+      "formData": {
+        "email": "test@example.com",
+        "password": "TestPass123!",
+        "name": "Test User",
+        "phone": "0612345678",
+        "address": "123 Rue de Test",
+        "city": "Paris",
+        "search": "test query",
+        "message": "Ceci est un message de test automatique.",
+        "custom": ""
+      }
+    },
+    {
+      "id": "37ccd5f3-5cb9-4edd-9d5c-f52acde78011",
+      "scenarioId": "2b05fd69-2856-414e-a584-59e79f239bd9",
+      "targetUrl": "https://www.google.com",
+      "status": "error",
+      "startedAt": "2026-04-05T11:12:03.190Z",
+      "endedAt": "2026-04-05T11:20:00.000Z",
+      "steps": [],
+      "bugs": [],
+      "formData": {
+        "email": "test@example.com",
+        "password": "TestPass123!",
+        "name": "Test User",
+        "phone": "0612345678",
+        "address": "123 Rue de Test",
+        "city": "Paris",
+        "search": "test query",
+        "message": "Ceci est un message de test automatique.",
+        "custom": ""
+      }
+    },
+    {
+      "id": "bfc87866-e975-4e5f-8313-85ca2a96cdeb",
+      "scenarioId": "291028be-8151-4ae9-8fdf-83cb77d97365",
+      "targetUrl": "https://www.cabinetclgi.com/",
+      "status": "error",
+      "startedAt": "2026-04-05T11:11:42.590Z",
+      "endedAt": "2026-04-05T11:20:00.000Z",
+      "steps": [],
+      "bugs": [],
+      "formData": {
+        "email": "test@example.com",
+        "password": "TestPass123!",
+        "name": "Test User",
+        "phone": "0612345678",
+        "address": "123 Rue de Test",
+        "city": "Paris",
+        "search": "test query",
+        "message": "Ceci est un message de test automatique.",
+        "custom": ""
+      }
+    },
+    {
       "id": "eee18541-8635-416d-be31-1791cc8eb363",
       "scenarioId": "291028be-8151-4ae9-8fdf-83cb77d97365",
       "targetUrl": "https://www.cabinetclgi.com/",

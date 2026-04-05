@@ -58,8 +58,8 @@ interface JournalEntry {
   styleUrl: './app.scss'
 })
 export class App implements OnInit, OnDestroy {
-  private API_URL = 'https://qa-crawler-bot.preview.emergentagent.com/api';
-  private WS_URL = 'wss://qa-crawler-bot.preview.emergentagent.com/api/ws';
+  private API_URL: string;
+  private WS_URL: string;
   private ws: WebSocket | null = null;
 
   activeTab = 'dashboard';
@@ -107,7 +107,19 @@ export class App implements OnInit, OnDestroy {
   testProgress = 0;
   totalScenarioSteps = 0;
 
-  constructor(private http: HttpClient, private cdr: ChangeDetectorRef) {}
+  constructor(private http: HttpClient, private cdr: ChangeDetectorRef) {
+    const host = window.location.hostname;
+    const protocol = window.location.protocol;
+    const wsProtocol = protocol === 'https:' ? 'wss:' : 'ws:';
+    
+    if (host === 'localhost' || host === '127.0.0.1') {
+      this.API_URL = `${protocol}//${host}:8001/api`;
+      this.WS_URL = `${wsProtocol}//${host}:8001/api/ws`;
+    } else {
+      this.API_URL = `${protocol}//${host}/api`;
+      this.WS_URL = `${wsProtocol}//${host}/api/ws`;
+    }
+  }
 
   ngOnInit() {
     this.connectWebSocket();

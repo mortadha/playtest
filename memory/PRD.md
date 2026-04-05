@@ -56,6 +56,9 @@ Application Playwright de test automatise qui explore un site web, clique partou
 - Reconstruction du journal depuis l'historique (clic sur session passee)
 - Bugs affiches en rouge avec URL
 - Fix: ChangeDetectorRef pour Angular zone-less (WebSocket + change detection)
+- Fix: URLs dynamiques (local + preview) basees sur window.location
+- Fix: Protection crash serveur (runTest().catch)
+- Fix: Reinstallation Playwright chromium
 
 ## Prioritized Backlog
 
@@ -95,6 +98,8 @@ Application Playwright de test automatise qui explore un site web, clique partou
 
 ### IMPORTANT
 - Angular 21 fonctionne en mode ZONE-LESS: utiliser ChangeDetectorRef.detectChanges() pour forcer le rendu apres WebSocket
+- URLs API/WS sont dynamiques (basees sur window.location) - fonctionne en local et en preview
 - Frontend est un build statique. Apres modification, executer `cd /app/frontend && yarn build`
 - Pas de hot-reload Angular
 - Pas de base de donnees - tout est en JSON
+- Playwright browsers doivent etre installes: PLAYWRIGHT_BROWSERS_PATH=/pw-browsers npx playwright install chromium

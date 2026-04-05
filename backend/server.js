@@ -148,8 +148,21 @@ app.post('/api/tests/start', async (req, res) => {
   
   res.json({ sessionId: session.id, status: 'started' });
   
-  // Run test in background
-  runTest(session.id, targetUrl, steps || [], fillForms, formData);
+  // Run test in background (catch unhandled errors)
+  runTest(session.id, targetUrl, steps || [], fillForms, formData).catch(err => {
+    console.error('Unhandled test error:', err.message);
+    currentTest.running = false;
+    currentTest.sessionId = null;
+    broadcast({ type: 'error', message: err.message });
+    
+    const data = readJSON(TESTS_FILE);
+    const s = data.sessions.find(x => x.id === session.id);
+    if (s) {
+      s.status = 'error';
+      s.endedAt = new Date().toISOString();
+      writeJSON(TESTS_FILE, data);
+    }
+  });
 });
 
 // Stop test
