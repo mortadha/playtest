@@ -1,6 +1,59 @@
 {
   "sessions": [
     {
+      "id": "46f2bfc9-84e4-421d-aa75-818b64f4bf57",
+      "scenarioId": "ca863dcd-0844-406d-8c51-b78971549f33",
+      "targetUrl": "https://httpbin.org/forms/post",
+      "status": "completed",
+      "startedAt": "2026-04-07T11:41:07.057Z",
+      "endedAt": "2026-04-07T11:41:19.984Z",
+      "steps": [
+        {
+          "id": "0655f882-b80b-454e-8f42-e6f7367e5aac",
+          "type": "visit",
+          "description": "Visited: https://httpbin.org/forms/post",
+          "url": "https://httpbin.org/forms/post",
+          "screenshot": "/api/screenshots/5d84d3a2-e20d-40bf-a65e-5c72ec520eb3.png",
+          "timestamp": "2026-04-07T11:41:09.755Z"
+        },
+        {
+          "id": "989a7319-f662-4586-a94b-57c764866dc4",
+          "type": "fill",
+          "description": "Filled: input[name=\"custname\"] = Test User",
+          "url": "https://httpbin.org/forms/post",
+          "screenshot": "/api/screenshots/ab6fef6c-5bf3-4ec0-8217-b28021890109.png",
+          "timestamp": "2026-04-07T11:41:09.922Z"
+        }
+      ],
+      "bugs": [
+        {
+          "id": "a1a112a6-7568-495f-b640-b4f5c9a757e0",
+          "type": "step_error",
+          "message": "Waiting for element to be located By(css selector, button[type=\"submit\"])\nWait timed out after 10054ms",
+          "url": "https://httpbin.org/forms/post",
+          "timestamp": "2026-04-07T11:41:19.979Z"
+        },
+        {
+          "id": "39055f6c-20eb-4018-bab8-eb1fd10633aa",
+          "type": "console_error",
+          "message": "https://httpbin.org/favicon.ico - Failed to load resource: the server responded with a status of 404 ()",
+          "url": "https://httpbin.org/forms/post",
+          "timestamp": "2026-04-07T11:41:19.983Z"
+        }
+      ],
+      "formData": {
+        "email": "test@example.com",
+        "password": "TestPass123!",
+        "name": "Test User",
+        "phone": "0612345678",
+        "address": "123 Rue de Test",
+        "city": "Paris",
+        "search": "test query",
+        "message": "Ceci est un message de test automatique.",
+        "custom": ""
+      }
+    },
+    {
       "id": "0837bc89-07c0-46b0-9bb3-1bd361c77d1f",
       "scenarioId": "ca863dcd-0844-406d-8c51-b78971549f33",
       "targetUrl": "https://httpbin.org/forms/post",
