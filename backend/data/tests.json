@@ -1,6 +1,80 @@
 {
   "sessions": [
     {
+      "id": "0837bc89-07c0-46b0-9bb3-1bd361c77d1f",
+      "scenarioId": "ca863dcd-0844-406d-8c51-b78971549f33",
+      "targetUrl": "https://httpbin.org/forms/post",
+      "status": "completed",
+      "startedAt": "2026-04-07T11:39:46.655Z",
+      "endedAt": "2026-04-07T11:39:59.849Z",
+      "steps": [
+        {
+          "id": "d2083428-6e46-457e-b6f1-c0021610ec3e",
+          "type": "visit",
+          "description": "Visited: https://httpbin.org/forms/post",
+          "url": "https://httpbin.org/forms/post",
+          "screenshot": "/api/screenshots/520ec323-49ce-4ce1-a2d1-6e19a9cc4e1e.png",
+          "timestamp": "2026-04-07T11:39:49.609Z"
+        },
+        {
+          "id": "5553e393-d7b0-42c6-af5a-fc092d0ac141",
+          "type": "fill",
+          "description": "Filled: input[name=\"custname\"] = Test User",
+          "url": "https://httpbin.org/forms/post",
+          "screenshot": "/api/screenshots/6189452c-630e-44f2-8f0c-858b8c2e6e5a.png",
+          "timestamp": "2026-04-07T11:39:49.792Z"
+        }
+      ],
+      "bugs": [
+        {
+          "id": "e9e4c359-dedd-425e-8fa6-031add4a83b3",
+          "type": "step_error",
+          "message": "Waiting for element to be located By(css selector, button[type=\"submit\"])\nWait timed out after 10049ms",
+          "url": "https://httpbin.org/forms/post",
+          "timestamp": "2026-04-07T11:39:59.844Z"
+        },
+        {
+          "id": "f9b3f179-820c-4018-b851-b4f40a7167b5",
+          "type": "console_error",
+          "message": "https://httpbin.org/favicon.ico - Failed to load resource: the server responded with a status of 404 ()",
+          "url": "https://httpbin.org/forms/post",
+          "timestamp": "2026-04-07T11:39:59.848Z"
+        }
+      ],
+      "formData": {
+        "email": "test@example.com",
+        "password": "TestPass123!",
+        "name": "Test User",
+        "phone": "0612345678",
+        "address": "123 Rue de Test",
+        "city": "Paris",
+        "search": "test query",
+        "message": "Ceci est un message de test automatique.",
+        "custom": ""
+      }
+    },
+    {
+      "id": "190c6fd0-d06d-405e-89f9-c5b304820cb3",
+      "scenarioId": "ca863dcd-0844-406d-8c51-b78971549f33",
+      "targetUrl": "https://httpbin.org/forms/post",
+      "status": "error",
+      "startedAt": "2026-04-07T11:38:37.963Z",
+      "endedAt": "2026-04-07T11:38:38.041Z",
+      "steps": [],
+      "bugs": [],
+      "formData": {
+        "email": "test@example.com",
+        "password": "TestPass123!",
+        "name": "Test User",
+        "phone": "0612345678",
+        "address": "123 Rue de Test",
+        "city": "Paris",
+        "search": "test query",
+        "message": "Ceci est un message de test automatique.",
+        "custom": ""
+      }
+    },
+    {
       "id": "9a8681fb-9688-49e3-bc32-33b9183f514b",
       "scenarioId": "ca863dcd-0844-406d-8c51-b78971549f33",
       "targetUrl": "https://httpbin.org/forms/post",
